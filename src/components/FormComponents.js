@@ -57,7 +57,6 @@ const Button = styled.button`
     text-align: center;
     color: #ffffff;
     background: #1877f2;
-    ${(props) => props.disabled && `opacity: 0.6;`}
     border-radius: 5px;
 `;
 
