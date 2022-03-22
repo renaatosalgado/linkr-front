@@ -36,7 +36,6 @@ function SignUp() {
             await api.createUser(user);
             navigation('/');
         } catch (error) {
-            console.log(error);
             alert('Erro, tente novamente');
             setLoading(false);
         }
