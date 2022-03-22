@@ -28,10 +28,18 @@ async function createPost(body, token) {
   return promise;
 }
 
+async function listAllPosts(token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(`${BASE_URL}/posts`, config);
+  return promise;
+}
+
 const api = {
   createUser,
   login,
   createPost,
+  listAllPosts,
 };
 
 export default api;
