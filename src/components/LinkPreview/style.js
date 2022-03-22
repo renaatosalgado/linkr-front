@@ -6,6 +6,7 @@ const LinkPreviewContainer = styled.div`
   box-sizing: border-box;
   border-radius: 11px;
   position: relative;
+  overflow-y: hidden;
 
   @media (max-width: 635px) {
     height: 115px;
