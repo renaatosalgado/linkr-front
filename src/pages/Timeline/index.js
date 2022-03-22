@@ -8,7 +8,7 @@ import {
   CreatePostImg,
   ProfilePic,
   Form,
-  Link,
+  Url,
   Description,
   Buttons,
   Publish,
@@ -16,15 +16,15 @@ import {
 
 export default function Timeline() {
   const [loading, setLoading] = useState(false);
-  const [link, setLink] = useState("");
-  const [text, setText] = useState("");
+  const [url, setUrl] = useState("");
+  const [description, setDescription] = useState("");
 
   function publishPost(event) {
     // event.preventDefault();
     // setLoading(true);
     // const body = {
-    //   text,
-    //   link,
+    //   description,
+    //   url,
     // };
     // postCreatePost(body, config)
     //   .then((res) => {
@@ -52,19 +52,19 @@ export default function Timeline() {
             </CreatePostImg>
             <Form onSubmit={publishPost}>
               <p>What do you have to share today?</p>
-              <Link
+              <Url
                 type="url"
                 placeholder="http://"
-                value={link}
+                value={url}
                 disabled={loading ? true : false}
                 required
-                onChange={(e) => setLink(e.target.value)}
-              ></Link>
+                onChange={(e) => setUrl(e.target.value)}
+              ></Url>
               <Description
                 type="text"
                 disabled={loading ? true : false}
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 placeholder="Very cool this link talking about #javascript"
               ></Description>
               <Buttons>

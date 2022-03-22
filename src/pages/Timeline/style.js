@@ -110,7 +110,7 @@ const Form = styled.form`
   }
 `;
 
-const Link = styled.input`
+const Url = styled.input`
   background-color: #efefef;
   width: 503px;
   height: 30px;
@@ -204,7 +204,7 @@ export {
   CreatePostImg,
   ProfilePic,
   Form,
-  Link,
+  Url,
   Description,
   Buttons,
   Publish,
