@@ -1,6 +1,8 @@
 import axios from 'axios';
+import dotenv from "dotenv";
+dotenv.config();
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = "http://localhost:5000"
 
 function createConfig(token) {
     return {
@@ -19,9 +21,15 @@ async function login(data) {
     return token;
 }
 
+async function createPost(body) {
+    const promise = await axios.post(`${BASE_URL}/posts`, body);
+    return promise;
+}
+
 const api = {
     createUser,
     login,
+    createPost
 };
 
 export default api;
