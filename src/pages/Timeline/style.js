@@ -81,6 +81,7 @@ const ProfilePic = styled.img`
 const Form = styled.form`
   font-family: "Lato", sans-serif;
   display: flex;
+  width: 503px;
   flex-direction: column;
   font-weight: 300;
   margin-top: 16px;
@@ -112,7 +113,6 @@ const Form = styled.form`
 
 const Url = styled.input`
   background-color: #efefef;
-  width: 503px;
   height: 30px;
   border-radius: 5px;
   margin-bottom: 5px;
@@ -131,17 +131,12 @@ const Url = styled.input`
   &:disabled {
     opacity: 0.5;
   }
-
-  @media (max-width: 635px) {
-    width: 100%;
-  }
 `;
 
 const Description = styled.textarea`
   border-radius: 5px;
   background-color: #efefef;
   height: 66px;
-  width: 515px;
   line-height: 18px;
   margin-bottom: 5px;
   padding-top: 8px;
@@ -161,7 +156,6 @@ const Description = styled.textarea`
   }
 
   @media (max-width: 635px) {
-    width: 100%;
     height: 47px;
   }
 `;
@@ -169,6 +163,7 @@ const Description = styled.textarea`
 const Buttons = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 const Publish = styled.button`

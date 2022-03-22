@@ -15,8 +15,10 @@ import {
 } from "./style";
 
 import api from "../../services/api";
+import useAuth from "../../hooks/useAuth";
 
 export default function Timeline() {
+  const { auth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -48,7 +50,7 @@ export default function Timeline() {
           <Title>timeline</Title>
           <CreatePost>
             <CreatePostImg>
-              {/* <ProfilePic src={} alt="" /> */}
+              <ProfilePic src={auth[0].image} alt="" />
             </CreatePostImg>
             <Form onSubmit={publishPost}>
               <p>What do you have to share today?</p>
