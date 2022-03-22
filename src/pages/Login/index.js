@@ -21,12 +21,12 @@ function Login() {
     const { auth, login } = useAuth();
     const navigation = useNavigate();
 
-    useEffect(() => {
-        if (auth && auth !== '') {
-            navigation('/timeline');
-        }
-        // eslint-disable-next-line
-    }, []);
+    //useEffect(() => {
+    //    if (auth && auth !== '') {
+    //        navigation('/timeline');
+    //    }
+    //    // eslint-disable-next-line
+    //}, []);
 
     function handleChange({ target }) {
         setFormData({ ...formData, [target.name]: target.value });
@@ -43,7 +43,6 @@ function Login() {
             login(data);
             navigation('/timeline');
         } catch (error) {
-            console.log(error);
             alert('Erro, tente novamente');
             setLoading(false);
         }
