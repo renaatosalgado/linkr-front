@@ -27,8 +27,13 @@ export default function Timeline() {
     event.preventDefault();
     setLoading(true);
 
+    const body = {
+      description,
+      url,
+    };
+
     api
-      .createPost({ description, url })
+      .createPost(body, auth.token)
       .then((res) => {
         setLoading(false);
         setDescription("");
@@ -50,7 +55,7 @@ export default function Timeline() {
           <Title>timeline</Title>
           <CreatePost>
             <CreatePostImg>
-              <ProfilePic src={auth[0].image} alt="" />
+              <ProfilePic src={auth.user.image} alt="" />
             </CreatePostImg>
             <Form onSubmit={publishPost}>
               <p>What do you have to share today?</p>
