@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   TimelineContainer,
   TimelineBox,
@@ -16,12 +16,30 @@ import {
 
 import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
+import Post from "../../components/Post";
 
 export default function Timeline() {
   const { auth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    api
+      .listAllPosts(auth.token)
+      .then((res) => {
+        setPosts(res.data);
+        console.log(res.data);
+        setIsLoadingPosts(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    //eslint-disable-next-line
+  }, []);
 
   function publishPost(event) {
     event.preventDefault();
@@ -81,6 +99,18 @@ export default function Timeline() {
               </Buttons>
             </Form>
           </CreatePost>
+          {isLoadingPosts
+            ? "Buscando posts"
+            : posts.map((post) => (
+                <Post
+                  key={post.id}
+                  url={post.url}
+                  linkTitle={post.urlTitle}
+                  linkDescription={post.urlDescription}
+                  linkImage={post.urlImage}
+                  textDescription={post.description}
+                />
+              ))}
         </TimelineBody>
       </TimelineBox>
     </TimelineContainer>
