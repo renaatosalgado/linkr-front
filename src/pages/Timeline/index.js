@@ -12,7 +12,10 @@ import {
   Description,
   Buttons,
   Publish,
+  CenteredContainer,
+  NoPostFound,
 } from "./style";
+import { ThreeDots } from "react-loader-spinner";
 
 import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
@@ -99,18 +102,24 @@ export default function Timeline() {
               </Buttons>
             </Form>
           </CreatePost>
-          {isLoadingPosts
-            ? "Buscando posts"
-            : posts.map((post) => (
-                <Post
-                  key={post.id}
-                  url={post.url}
-                  linkTitle={post.urlTitle}
-                  linkDescription={post.urlDescription}
-                  linkImage={post.urlImage}
-                  textDescription={post.description}
-                />
-              ))}
+          {isLoadingPosts ? (
+            <CenteredContainer>
+              <ThreeDots color="#ffffff" height={100} width={100} />
+            </CenteredContainer>
+          ) : posts.length === 0 ? (
+            <NoPostFound>There are nos posts yet</NoPostFound>
+          ) : (
+            posts.map((post) => (
+              <Post
+                key={post.id}
+                url={post.url}
+                linkTitle={post.urlTitle}
+                linkDescription={post.urlDescription}
+                linkImage={post.urlImage}
+                textDescription={post.description}
+              />
+            ))
+          )}
         </TimelineBody>
       </TimelineBox>
     </TimelineContainer>
