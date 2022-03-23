@@ -36,6 +36,7 @@ const Logo = styled.h1`
 `;
 
 const Photo = styled.img`
+    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 17px;
