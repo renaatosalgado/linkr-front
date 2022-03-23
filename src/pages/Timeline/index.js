@@ -74,10 +74,7 @@ export default function Timeline() {
                     <Title>timeline</Title>
                     <CreatePost>
                         <CreatePostImg>
-                            <ProfilePic
-                                src={auth.user && auth.user.image}
-                                alt=""
-                            />
+                            <ProfilePic src={auth.user?.image} alt="" />
                         </CreatePostImg>
                         <Form onSubmit={publishPost}>
                             <p>What do you have to share today?</p>
