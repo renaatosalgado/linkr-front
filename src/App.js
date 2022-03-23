@@ -5,7 +5,7 @@ import SignUp from './pages/SignUp';
 import Timeline from './pages/Timeline';
 import { AuthProvider } from './contexts/AuthContext';
 import { GlobalStyle } from './css/style';
-import Header from './components/Header';
+//import Header from './components/Header';
 
 function App() {
     return (
@@ -13,7 +13,7 @@ function App() {
             <GlobalStyle />
             <AuthProvider>
                 <BrowserRouter>
-                    <Header />
+                    {/*<Header />*/}
                     <Routes>
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/" element={<Login />} />

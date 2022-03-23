@@ -20,6 +20,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 import Post from '../../components/Post';
+import Header from '../../components/Header';
 
 export default function Timeline() {
     const { auth } = useAuth();
@@ -68,68 +69,71 @@ export default function Timeline() {
     }
 
     return (
-        <TimelineContainer>
-            <TimelineBox>
-                <TimelineBody>
-                    <Title>timeline</Title>
-                    <CreatePost>
-                        <CreatePostImg>
-                            <ProfilePic src={auth?.user?.image} alt="" />
-                        </CreatePostImg>
-                        <Form onSubmit={publishPost}>
-                            <p>What do you have to share today?</p>
-                            <Url
-                                type="url"
-                                placeholder="http://"
-                                value={url}
-                                disabled={loading ? true : false}
-                                required
-                                onChange={(e) => setUrl(e.target.value)}
-                            ></Url>
-                            <Description
-                                type="text"
-                                disabled={loading ? true : false}
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Very cool this link talking about #javascript"
-                            ></Description>
-                            <Buttons>
-                                <Publish
-                                    type={'submit'}
+        <>
+            <Header />
+            <TimelineContainer>
+                <TimelineBox>
+                    <TimelineBody>
+                        <Title>timeline</Title>
+                        <CreatePost>
+                            <CreatePostImg>
+                                <ProfilePic src={auth?.user?.image} alt="" />
+                            </CreatePostImg>
+                            <Form onSubmit={publishPost}>
+                                <p>What do you have to share today?</p>
+                                <Url
+                                    type="url"
+                                    placeholder="http://"
+                                    value={url}
                                     disabled={loading ? true : false}
-                                >
-                                    {loading ? 'Publishing...' : 'Publish'}
-                                </Publish>
-                            </Buttons>
-                        </Form>
-                    </CreatePost>
-                    {isLoadingPosts ? (
-                        <CenteredContainer>
-                            <ThreeDots
-                                color="#ffffff"
-                                height={100}
-                                width={100}
-                            />
-                        </CenteredContainer>
-                    ) : posts.length === 0 ? (
-                        <NoPostFound>There are nos posts yet</NoPostFound>
-                    ) : (
-                        posts.map((post) => (
-                            <Post
-                                key={post.id}
-                                postId={post.id}
-                                url={post.url}
-                                linkTitle={post.urlTitle}
-                                linkDescription={post.urlDescription}
-                                linkImage={post.urlImage}
-                                textDescription={post.description}
-                                author={post.author}
-                                profilePicture={post.profilePicture}
-                            />
-                        ))
-                    )}
-                </TimelineBody>
-            </TimelineBox>
-        </TimelineContainer>
+                                    required
+                                    onChange={(e) => setUrl(e.target.value)}
+                                ></Url>
+                                <Description
+                                    type="text"
+                                    disabled={loading ? true : false}
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Very cool this link talking about #javascript"
+                                ></Description>
+                                <Buttons>
+                                    <Publish
+                                        type={'submit'}
+                                        disabled={loading ? true : false}
+                                    >
+                                        {loading ? 'Publishing...' : 'Publish'}
+                                    </Publish>
+                                </Buttons>
+                            </Form>
+                        </CreatePost>
+                        {isLoadingPosts ? (
+                            <CenteredContainer>
+                                <ThreeDots
+                                    color="#ffffff"
+                                    height={100}
+                                    width={100}
+                                />
+                            </CenteredContainer>
+                        ) : posts.length === 0 ? (
+                            <NoPostFound>There are nos posts yet</NoPostFound>
+                        ) : (
+                            posts.map((post) => (
+                                <Post
+                                    key={post.id}
+                                    postId={post.id}
+                                    url={post.url}
+                                    linkTitle={post.urlTitle}
+                                    linkDescription={post.urlDescription}
+                                    linkImage={post.urlImage}
+                                    textDescription={post.description}
+                                    author={post.author}
+                                    profilePicture={post.profilePicture}
+                                />
+                            ))
+                        )}
+                    </TimelineBody>
+                </TimelineBox>
+            </TimelineContainer>
+        </>
     );
 }
