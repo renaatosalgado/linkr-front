@@ -35,11 +35,19 @@ async function listAllPosts(token) {
   return promise;
 }
 
+async function toogleLike(body, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.post(`${BASE_URL}/posts/likes/toogle`, body, config);
+  return promise;
+}
+
 const api = {
   createUser,
   login,
   createPost,
   listAllPosts,
+  toogleLike,
 };
 
 export default api;
