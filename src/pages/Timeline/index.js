@@ -30,7 +30,7 @@ export default function Timeline() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        api.listAllPosts(auth.token)
+        api.listAllPosts(auth?.token)
             .then((res) => {
                 setPosts(res.data);
                 console.log(res.data);
@@ -51,8 +51,7 @@ export default function Timeline() {
             description,
             url,
         };
-
-        api.createPost(body, auth.token)
+        api.createPost(body, auth?.token)
             .then((res) => {
                 setLoading(false);
                 setDescription('');
@@ -74,7 +73,7 @@ export default function Timeline() {
                     <Title>timeline</Title>
                     <CreatePost>
                         <CreatePostImg>
-                            <ProfilePic src={auth.user?.image} alt="" />
+                            <ProfilePic src={auth?.user?.image} alt="" />
                         </CreatePostImg>
                         <Form onSubmit={publishPost}>
                             <p>What do you have to share today?</p>
