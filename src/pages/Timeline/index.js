@@ -31,7 +31,7 @@ export default function Timeline() {
 
   useEffect(() => {
     api
-      .listAllPosts(auth.token)
+      .listAllPosts(auth?.token)
       .then((res) => {
         setPosts(res.data);
         console.log(res.data);
@@ -54,7 +54,7 @@ export default function Timeline() {
     };
 
     api
-      .createPost(body, auth.token)
+      .createPost(body, auth?.token)
       .then((res) => {
         setLoading(false);
         setDescription("");
@@ -69,6 +69,8 @@ export default function Timeline() {
       });
   }
 
+  console.log(auth)
+
   return (
     <TimelineContainer>
       <TimelineBox>
@@ -76,7 +78,7 @@ export default function Timeline() {
           <Title>timeline</Title>
           <CreatePost>
             <CreatePostImg>
-              <ProfilePic src={auth.user.image} alt="" />
+              <ProfilePic src={auth?.user?.image} alt="" />
             </CreatePostImg>
             <Form onSubmit={publishPost}>
               <p>What do you have to share today?</p>
