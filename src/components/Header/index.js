@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
-import { useNavigate } from 'react-router';
 import { TopBar, Arrow, Logo, Photo, LogoutButton } from './style';
 import { IoChevronUpOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
@@ -20,8 +19,8 @@ function Header() {
     async function logoutHandler() {
         try {
             await api.logout(user.id);
-            login('');
             navigation('/');
+            login('');
         } catch (error) {
             console.log(error);
             alert('Tente novamente');
@@ -46,7 +45,7 @@ function Header() {
                         )}
                     </IconContext.Provider>
                 </Arrow>
-                <Photo src={`${user.image}`} alt="Foto" />
+                <Photo src={`${user ? user.image : ''}`} alt="Foto" />
                 {logoutButton && (
                     <LogoutButton onClick={() => logoutHandler()}>
                         Lougout
