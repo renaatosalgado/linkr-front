@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
         * {     
                 ul, li, button, input, a{
                         all: unset;
+                        box-sizing: border-box;
                 }
                 body{
                           background-color: #333333;
@@ -25,11 +26,11 @@ const GlobalStyle = createGlobalStyle`
                         border-radius:8px;
                         }
                 ::-webkit-scrollbar-thumb {
-                        background: rgb(148, 92, 190, 0.3); 
+                        background: #171717; 
                         border-radius:8px;
                         }
                 ::-webkit-scrollbar-thumb:hover {
-                        background: rgb(148, 92, 190, 0.3); 
+                        background: #171717; 
                         border-radius:8px;
                         }
         }
