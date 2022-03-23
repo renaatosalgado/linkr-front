@@ -35,8 +35,10 @@ async function listAllPosts(token) {
     return promise;
 }
 
-async function logout(userId) {
-    const promise = await axios.post(`${BASE_URL}/logout`, userId);
+async function logout(token) {
+    const config = createConfig(token);
+
+    const promise = await axios.delete(`${BASE_URL}/logout`, config);
     return promise;
 }
 

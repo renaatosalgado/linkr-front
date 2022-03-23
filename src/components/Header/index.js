@@ -7,20 +7,17 @@ import { IoChevronUpOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 
 function Header() {
-    const [isMenuOpen, setisMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const ref = useRef(null);
     const navigation = useNavigate();
     const { pathname } = useLocation();
-    const {
-        auth: { user },
-        login,
-    } = useAuth();
+    const { auth, login } = useAuth();
     const isHomePage = pathname === `/` || pathname === `/sign-up`;
 
     useEffect(() => {
         const checkClick = (e) => {
             if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
-                setisMenuOpen(false);
+                setIsMenuOpen(false);
             }
         };
 
@@ -33,10 +30,10 @@ function Header() {
 
     async function logoutHandler() {
         try {
-            await api.logout(user.id);
+            await api.logout(auth.token);
             login('');
             navigation('/');
-            setisMenuOpen(false);
+            setIsMenuOpen(false);
         } catch (error) {
             console.log(error);
             alert('Tente novamente');
@@ -47,7 +44,7 @@ function Header() {
         !isHomePage && (
             <TopBar>
                 <Logo>linkr</Logo>
-                <Arrow onClick={() => setisMenuOpen(!isMenuOpen)}>
+                <Arrow onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <IconContext.Provider
                         value={{
                             color: 'white',
@@ -62,9 +59,9 @@ function Header() {
                     </IconContext.Provider>
                 </Arrow>
                 <Photo
-                    src={`${user ? user.image : ''}`}
+                    src={`${auth?.user ? auth?.user.image : ''}`}
                     alt="Foto"
-                    onClick={() => setisMenuOpen(!isMenuOpen)}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
                 />
                 {isMenuOpen && (
                     <LogoutButton onClick={() => logoutHandler()} ref={ref}>
