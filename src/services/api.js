@@ -42,12 +42,36 @@ async function logout(token) {
     return promise;
 }
 
+async function toogleLike(body, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.post(`${BASE_URL}/likes/toogle`, body, config);
+  return promise;
+}
+
+async function totalLikes(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/likes/${postId}/total`, config);
+    return promise;
+}
+
+async function checkLikeUser(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
+    return promise;
+}
+
 const api = {
-    createUser,
-    login,
-    createPost,
-    listAllPosts,
-    logout,
+  createUser,
+  login,
+  createPost,
+  listAllPosts,
+  logout,
+  toogleLike,
+  totalLikes,
+  checkLikeUser,
 };
 
 export default api;

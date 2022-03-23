@@ -116,11 +116,14 @@ export default function Timeline() {
                         posts.map((post) => (
                             <Post
                                 key={post.id}
+                                postId={post.id}
                                 url={post.url}
                                 linkTitle={post.urlTitle}
                                 linkDescription={post.urlDescription}
                                 linkImage={post.urlImage}
                                 textDescription={post.description}
+                                author={post.author}
+                                profilePicture={post.profilePicture}
                             />
                         ))
                     )}

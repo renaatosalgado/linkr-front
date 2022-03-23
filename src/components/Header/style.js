@@ -8,7 +8,6 @@ const TopBar = styled.div`
     top: 0px;
     left: 0px;
     z-index: 100;
-    position: relative;
     @media (max-width: 635px) {
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
@@ -18,7 +17,7 @@ const Logo = styled.h1`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 28px;
     font-family: 'Passion One';
@@ -27,7 +26,7 @@ const Logo = styled.h1`
     line-height: 54px;
     color: #ffffff;
     @media (max-width: 635px) {
-        position: absolute;
+        position: fixed;
         top: 13px;
         left: 17px;
         font-size: 45px;
@@ -37,14 +36,14 @@ const Logo = styled.h1`
 
 const Photo = styled.img`
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 17px;
     width: 53px;
     height: 53px;
     border-radius: 26.5px;
     @media (max-width: 635px) {
-        position: absolute;
+        position: fixed;
         top: 12px;
         right: 14px;
         width: 44px;
@@ -54,11 +53,11 @@ const Photo = styled.img`
 
 const Arrow = styled.div`
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     top: 20px;
     right: 85px;
     @media (max-width: 635px) {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 70px;
     }
@@ -79,7 +78,7 @@ const LogoutButton = styled.div`
     font-weight: 700;
     font-size: 15px;
     color: #ffffff;
-    position: absolute;
+    position: fixed;
     top: 72px;
     right: 0px;
     @media (max-width: 635px) {
