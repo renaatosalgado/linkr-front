@@ -19,8 +19,9 @@ function Header() {
     async function logoutHandler() {
         try {
             await api.logout(user.id);
-            navigation('/');
             login('');
+            navigation('/');
+            setLogoutButton(false);
         } catch (error) {
             console.log(error);
             alert('Tente novamente');
