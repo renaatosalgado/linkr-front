@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   LinkPreviewContainer,
   LeftContainer,
@@ -15,13 +16,15 @@ export default function LinkPreview({
   linkImage,
 }) {
   return (
-    <LinkPreviewContainer>
-      <LeftContainer>
-        <LinkTitle>{linkTitle}</LinkTitle>
-        <LinkDescription>{linkDescription}</LinkDescription>
-        <LinkAnchor>{url}</LinkAnchor>
-      </LeftContainer>
-      <LinkImg src={linkImage} />
-    </LinkPreviewContainer>
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      <LinkPreviewContainer>
+        <LeftContainer>
+          <LinkTitle>{linkTitle}</LinkTitle>
+          <LinkDescription>{linkDescription}</LinkDescription>
+          <LinkAnchor>{url}</LinkAnchor>
+        </LeftContainer>
+        <LinkImg src={linkImage} />
+      </LinkPreviewContainer>
+    </a>
   );
 }
