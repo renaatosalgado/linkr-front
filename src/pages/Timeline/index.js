@@ -34,7 +34,6 @@ export default function Timeline() {
       .listAllPosts(auth?.token)
       .then((res) => {
         setPosts(res.data);
-        console.log(res.data);
         setIsLoadingPosts(false);
       })
       .catch((err) => {

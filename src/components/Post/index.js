@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   PostBox,
@@ -17,6 +17,7 @@ import {
 import LinkPreview from "../LinkPreview";
 import LikeHeart from "../LikeHeart";
 import useAuth from "../../hooks/useAuth";
+import api from "../../services/api";
 
 export default function Post({
   url,
@@ -33,10 +34,21 @@ export default function Post({
   const { auth } = useAuth();
   const [edit, setEdit] = useState(false);
   const [description, setDescription] = useState("");
+  const editRef = useRef();
+  const [editFocus, setEditFocus] = useState(false);
+
+  useEffect(() => {
+    if (editFocus) {
+      editRef.current.focus();
+    }
+  }, [editFocus]);
 
   function handleEditPost() {
     if (edit) {
       setDescription("");
+    } else {
+      setEditFocus(!editFocus);
+      // editRef.current.focus();
     }
     setEdit(!edit);
   }
@@ -45,6 +57,17 @@ export default function Post({
     if (e.keyCode === 27) {
       handleEditPost();
     }
+    // if (e.keyCode === 13) {
+    //   const body = {
+    //     description,
+    //   };
+    //   try {
+    //     await api.editPost(postId, body, auth?.token);
+    //     setEdit(!edit);
+    //   } catch (error) {
+    //     console.log(error.response);
+    //   }
+    // }
   }
 
   return (
@@ -66,6 +89,7 @@ export default function Post({
           </TopContainer>
           {edit ? (
             <EditInput
+              ref={editRef}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder={textDescription}
