@@ -32,9 +32,19 @@ export default function Post({
   const [like, setLike] = useState(false);
   const { auth } = useAuth();
   const [edit, setEdit] = useState(false);
+  const [description, setDescription] = useState("");
 
-  function editPost() {
+  function handleEditPost() {
+    if (edit) {
+      setDescription("");
+    }
     setEdit(!edit);
+  }
+
+  function keyEvents(e) {
+    if (e.keyCode === 27) {
+      handleEditPost();
+    }
   }
 
   return (
@@ -49,13 +59,18 @@ export default function Post({
             <UserName>{author}</UserName>
             {userId === auth.user.id && (
               <IconBox>
-                <EditIcon size="20" onClick={editPost} />
+                <EditIcon size="20" onClick={handleEditPost} />
                 <DeleteIcon size="20" />
               </IconBox>
             )}
           </TopContainer>
           {edit ? (
-            <EditInput placeholder={textDescription} />
+            <EditInput
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={textDescription}
+              onKeyDown={keyEvents}
+            />
           ) : (
             <TextDescription>{textDescription}</TextDescription>
           )}
