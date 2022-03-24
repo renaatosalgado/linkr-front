@@ -36,6 +36,7 @@ export default function Post({
   const [description, setDescription] = useState("");
   const editRef = useRef();
   const [editFocus, setEditFocus] = useState(false);
+  const [postText, setPostText] = useState(textDescription);
 
   useEffect(() => {
     if (editFocus) {
@@ -53,21 +54,23 @@ export default function Post({
     setEdit(!edit);
   }
 
-  function keyEvents(e) {
+  async function keyEvents(e) {
     if (e.keyCode === 27) {
       handleEditPost();
     }
-    // if (e.keyCode === 13) {
-    //   const body = {
-    //     description,
-    //   };
-    //   try {
-    //     await api.editPost(postId, body, auth?.token);
-    //     setEdit(!edit);
-    //   } catch (error) {
-    //     console.log(error.response);
-    //   }
-    // }
+    if (e.keyCode === 13) {
+      console.log("teste");
+      const body = {
+        description,
+      };
+      try {
+        await api.editPost(postId, body, auth?.token);
+        setPostText(description);
+        setEdit(!edit);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
   }
 
   return (
@@ -92,11 +95,11 @@ export default function Post({
               ref={editRef}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder={textDescription}
+              placeholder={postText}
               onKeyDown={keyEvents}
             />
           ) : (
-            <TextDescription>{textDescription}</TextDescription>
+            <TextDescription>{postText}</TextDescription>
           )}
           <LinkPreview
             url={url}
