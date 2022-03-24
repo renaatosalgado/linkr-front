@@ -48,9 +48,8 @@ export default function Post({
   function handleEditPost() {
     if (edit) {
       setDescription("");
-    } else {
-      setEditFocus(!editFocus);
     }
+    setEditFocus(!editFocus);
     setEdit(!edit);
   }
 
@@ -69,8 +68,8 @@ export default function Post({
         setPostText(description);
         setEdit(!edit);
       } catch (error) {
-        console.log(error.response);
-        setLoading(true);
+        alert("Something went wrong, please try again");
+        setLoading(false);
       }
     }
   }
