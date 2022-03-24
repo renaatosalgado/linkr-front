@@ -71,18 +71,16 @@ const RightContainer = styled.div`
 `;
 
 const UserName = styled.p`
-  font-family: Lato;
+  font-family: "Lato";
   font-style: normal;
   font-weight: normal;
   font-size: 19px;
   color: #ffffff;
   padding-bottom: 7px;
-  max-width: 455px;
-  word-break: break-word;
+  word-break: break-all;
 
   @media (max-width: 635px) {
     font-size: 17px;
-    max-width: 57vw;
   }
 `;
 
@@ -96,8 +94,6 @@ const TextDescription = styled.div`
   padding-top: 4px;
   padding-bottom: 4px;
 `;
-
-
 
 export {
   PostBox,
