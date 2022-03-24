@@ -37,6 +37,7 @@ export default function Post({
   const editRef = useRef();
   const [editFocus, setEditFocus] = useState(false);
   const [postText, setPostText] = useState(textDescription);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (editFocus) {
@@ -49,7 +50,6 @@ export default function Post({
       setDescription("");
     } else {
       setEditFocus(!editFocus);
-      // editRef.current.focus();
     }
     setEdit(!edit);
   }
@@ -59,16 +59,18 @@ export default function Post({
       handleEditPost();
     }
     if (e.keyCode === 13) {
-      console.log("teste");
+      setLoading(true);
       const body = {
         description,
       };
       try {
         await api.editPost(postId, body, auth?.token);
+        setLoading(false);
         setPostText(description);
         setEdit(!edit);
       } catch (error) {
         console.log(error.response);
+        setLoading(true);
       }
     }
   }
@@ -92,6 +94,7 @@ export default function Post({
           </TopContainer>
           {edit ? (
             <EditInput
+              disabled={loading}
               ref={editRef}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
