@@ -99,18 +99,30 @@ const TextDescription = styled.div`
   padding-bottom: 4px;
 `;
 
+const TopContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
 const EditIcon = styled(TiPencil)`
   color: #fff;
-  position: absolute;
-  top: 35px;
-  right: 45px;
 `;
 
 const DeleteIcon = styled(FiTrash)`
   color: #fff;
-  position: absolute;
-  top: 35px;
-  right: 20px;
+`;
+
+const EditInput = styled.input`
+  border-radius: 7px;
+  background-color: #fff;
+  padding: 5px;
+  margin-bottom: 8px;
 `;
 
 export {
@@ -121,6 +133,9 @@ export {
   RightContainer,
   UserName,
   TextDescription,
+  TopContainer,
+  IconBox,
   EditIcon,
   DeleteIcon,
+  EditInput,
 };

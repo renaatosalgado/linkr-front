@@ -8,8 +8,11 @@ import {
   RightContainer,
   UserName,
   TextDescription,
+  TopContainer,
+  IconBox,
   EditIcon,
   DeleteIcon,
+  EditInput,
 } from "./style";
 import LinkPreview from "../LinkPreview";
 import LikeHeart from "../LikeHeart";
@@ -28,6 +31,11 @@ export default function Post({
 }) {
   const [like, setLike] = useState(false);
   const { auth } = useAuth();
+  const [edit, setEdit] = useState(false);
+
+  function editPost() {
+    setEdit(!edit);
+  }
 
   return (
     <PostBox>
@@ -37,15 +45,20 @@ export default function Post({
           <LikeHeart like={like} setLike={setLike} postId={postId} />
         </LeftContainer>
         <RightContainer>
-          <UserName>{author}</UserName>
-          {userId === auth.user.id && (
-            <>
-              {" "}
-              <EditIcon size="20" />
-              <DeleteIcon size="20" />
-            </>
+          <TopContainer>
+            <UserName>{author}</UserName>
+            {userId === auth.user.id && (
+              <IconBox>
+                <EditIcon size="20" onClick={editPost} />
+                <DeleteIcon size="20" />
+              </IconBox>
+            )}
+          </TopContainer>
+          {edit ? (
+            <EditInput placeholder={textDescription} />
+          ) : (
+            <TextDescription>{textDescription}</TextDescription>
           )}
-          <TextDescription>{textDescription}</TextDescription>
           <LinkPreview
             url={url}
             linkTitle={linkTitle}
