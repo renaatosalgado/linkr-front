@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { FiTrash } from "react-icons/fi";
+import { TiPencil } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const PostBox = styled.div`
   background-color: #1e1e1e;
@@ -71,7 +73,7 @@ const RightContainer = styled.div`
   }
 `;
 
-const UserName = styled.p`
+const UserName = styled(Link)`
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
@@ -80,7 +82,7 @@ const UserName = styled.p`
   padding-bottom: 7px;
   max-width: 455px;
   word-break: break-word;
-
+  cursor: pointer;
   @media (max-width: 635px) {
     font-size: 17px;
     max-width: 57vw;
@@ -102,6 +104,32 @@ const Hashtag = styled(Link)`
     cursor: pointer;
     font-weight: 700;
     color: #ffffff;
+`
+
+const TopContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const EditIcon = styled(TiPencil)`
+  color: #fff;
+`;
+
+const DeleteIcon = styled(FiTrash)`
+  color: #fff;
+`;
+
+const EditInput = styled.input`
+  border-radius: 7px;
+  background-color: #fff;
+  padding: 5px;
+  margin-bottom: 8px;
 `;
 
 export {
@@ -113,4 +141,9 @@ export {
   UserName,
   TextDescription,
   Hashtag,
+  TopContainer,
+  IconBox,
+  EditIcon,
+  DeleteIcon,
+  EditInput,
 };

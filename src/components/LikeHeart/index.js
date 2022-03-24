@@ -10,7 +10,7 @@ export default function LikeHeart({ like, setLike, postId }) {
 
   async function handleLike() {
     setLike(!like)
-    await api.toogleLike({ like, postId }, auth?.token);
+    await api.toggleLike({ like, postId }, auth?.token);
     setRefresh(!refresh);
   }
 
