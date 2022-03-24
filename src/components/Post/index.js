@@ -33,10 +33,10 @@ export default function Post({
   const [like, setLike] = useState(false);
   const { auth } = useAuth();
   const [edit, setEdit] = useState(false);
-  const [description, setDescription] = useState("");
   const editRef = useRef();
   const [editFocus, setEditFocus] = useState(false);
   const [postText, setPostText] = useState(textDescription);
+  const [description, setDescription] = useState(postText);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Post({
 
   function handleEditPost() {
     if (edit) {
-      setDescription("");
+      setDescription(postText);
     }
     setEditFocus(!editFocus);
     setEdit(!edit);
@@ -67,6 +67,7 @@ export default function Post({
         setLoading(false);
         setPostText(description);
         setEdit(!edit);
+        setEditFocus(!editFocus);
       } catch (error) {
         alert("Something went wrong, please try again");
         setLoading(false);
@@ -83,7 +84,7 @@ export default function Post({
         </LeftContainer>
         <RightContainer>
           <TopContainer>
-            <UserName>{author}</UserName>
+            <UserName to={`/user/${userId}`}>{author}</UserName>
             {userId === auth.user.id && (
               <IconBox>
                 <EditIcon size="20" onClick={handleEditPost} />
@@ -97,7 +98,6 @@ export default function Post({
               ref={editRef}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder={postText}
               onKeyDown={keyEvents}
             />
           ) : (

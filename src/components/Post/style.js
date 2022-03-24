@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FiTrash } from "react-icons/fi";
 import { TiPencil } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const PostBox = styled.div`
   background-color: #1e1e1e;
@@ -72,7 +73,7 @@ const RightContainer = styled.div`
   }
 `;
 
-const UserName = styled.p`
+const UserName = styled(Link)`
   font-family: Lato;
   font-style: normal;
   font-weight: normal;
@@ -81,7 +82,7 @@ const UserName = styled.p`
   padding-bottom: 7px;
   max-width: 455px;
   word-break: break-word;
-
+  cursor: pointer;
   @media (max-width: 635px) {
     font-size: 17px;
     max-width: 57vw;
