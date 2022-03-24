@@ -35,6 +35,13 @@ async function listAllPosts(token) {
     return promise;
 }
 
+async function listUserPosts(token, userId) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
+    return promise;
+}
+
 async function logout(token) {
     const config = createConfig(token);
 
@@ -43,16 +50,19 @@ async function logout(token) {
 }
 
 async function toogleLike(body, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.post(`${BASE_URL}/likes/toogle`, body, config);
-  return promise;
+    const promise = await axios.post(`${BASE_URL}/likes/toogle`, body, config);
+    return promise;
 }
 
 async function totalLikes(postId, token) {
     const config = createConfig(token);
 
-    const promise = await axios.get(`${BASE_URL}/likes/${postId}/total`, config);
+    const promise = await axios.get(
+        `${BASE_URL}/likes/${postId}/total`,
+        config
+    );
     return promise;
 }
 
@@ -64,14 +74,15 @@ async function checkLikeUser(postId, token) {
 }
 
 const api = {
-  createUser,
-  login,
-  createPost,
-  listAllPosts,
-  logout,
-  toogleLike,
-  totalLikes,
-  checkLikeUser,
+    createUser,
+    login,
+    createPost,
+    listAllPosts,
+    listUserPosts,
+    logout,
+    toogleLike,
+    totalLikes,
+    checkLikeUser,
 };
 
 export default api;
