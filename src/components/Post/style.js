@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { FiTrash } from "react-icons/fi";
+import { TiPencil } from "react-icons/ti";
 
 const PostBox = styled.div`
   background-color: #1e1e1e;
@@ -97,7 +99,19 @@ const TextDescription = styled.div`
   padding-bottom: 4px;
 `;
 
+const EditIcon = styled(TiPencil)`
+  color: #fff;
+  position: absolute;
+  top: 35px;
+  right: 45px;
+`;
 
+const DeleteIcon = styled(FiTrash)`
+  color: #fff;
+  position: absolute;
+  top: 35px;
+  right: 20px;
+`;
 
 export {
   PostBox,
@@ -107,4 +121,6 @@ export {
   RightContainer,
   UserName,
   TextDescription,
+  EditIcon,
+  DeleteIcon,
 };

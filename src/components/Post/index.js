@@ -8,12 +8,26 @@ import {
   RightContainer,
   UserName,
   TextDescription,
+  EditIcon,
+  DeleteIcon,
 } from "./style";
 import LinkPreview from "../LinkPreview";
-import LikeHeart from "../LikeHeart"
+import LikeHeart from "../LikeHeart";
+import useAuth from "../../hooks/useAuth";
 
-export default function Post({ url, linkTitle, linkDescription, linkImage, textDescription, postId, author, profilePicture }) {
+export default function Post({
+  url,
+  linkTitle,
+  linkDescription,
+  linkImage,
+  textDescription,
+  postId,
+  author,
+  profilePicture,
+  userId,
+}) {
   const [like, setLike] = useState(false);
+  const { auth } = useAuth();
 
   return (
     <PostBox>
@@ -23,12 +37,15 @@ export default function Post({ url, linkTitle, linkDescription, linkImage, textD
           <LikeHeart like={like} setLike={setLike} postId={postId} />
         </LeftContainer>
         <RightContainer>
-          <UserName>
-              {author}
-          </UserName>
-          <TextDescription>
-              {textDescription}
-          </TextDescription>
+          <UserName>{author}</UserName>
+          {userId === auth.user.id && (
+            <>
+              {" "}
+              <EditIcon size="20" />
+              <DeleteIcon size="20" />
+            </>
+          )}
+          <TextDescription>{textDescription}</TextDescription>
           <LinkPreview
             url={url}
             linkTitle={linkTitle}
