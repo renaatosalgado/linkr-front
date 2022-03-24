@@ -49,7 +49,7 @@ async function logout(token) {
   return promise;
 }
 
-async function toogleLike(body, token) {
+async function toggleLike(body, token) {
     const config = createConfig(token);
 
     const promise = await axios.post(`${BASE_URL}/likes/toogle`, body, config);
@@ -65,6 +65,14 @@ async function totalLikes(postId, token) {
     );
     return promise;
 }
+
+async function hashtagPost(hashtag, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/posts/hashtag/${hashtag}`, config);
+    return promise;
+}
+
 
 async function checkLikeUser(postId, token) {
   const config = createConfig(token);
@@ -86,9 +94,10 @@ const api = {
   createPost,
   listAllPosts,
   logout,
-  toogleLike,
+  toggleLike,
   totalLikes,
   checkLikeUser,
+  hashtagPost,
   editPost,
   listUserPosts
 };

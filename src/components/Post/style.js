@@ -100,6 +100,12 @@ const TextDescription = styled.div`
   padding-bottom: 4px;
 `;
 
+const Hashtag = styled(Link)`
+    cursor: pointer;
+    font-weight: 700;
+    color: #ffffff;
+`
+
 const TopContainer = styled.div`
   width: 100%;
   display: flex;
@@ -134,6 +140,7 @@ export {
   RightContainer,
   UserName,
   TextDescription,
+  Hashtag,
   TopContainer,
   IconBox,
   EditIcon,

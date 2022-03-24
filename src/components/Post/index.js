@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ReactHashtag from "@mdnm/react-hashtag";
 
 import {
   PostBox,
@@ -8,6 +9,7 @@ import {
   RightContainer,
   UserName,
   TextDescription,
+  Hashtag,
   TopContainer,
   IconBox,
   EditIcon,
@@ -101,7 +103,19 @@ export default function Post({
               onKeyDown={keyEvents}
             />
           ) : (
-            <TextDescription>{postText}</TextDescription>
+            <TextDescription>
+            <ReactHashtag
+              renderHashtag={(hashtagValue) => (
+                <Hashtag 
+                to={`/hashtag/${hashtagValue.replace("#","")}`}
+                >
+                  {hashtagValue}
+                </Hashtag>
+              )}
+            >
+            {postText}
+          </ReactHashtag>
+          </TextDescription>
           )}
           <LinkPreview
             url={url}
