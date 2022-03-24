@@ -43,7 +43,7 @@ function Header() {
     return (
         !isHomePage && (
             <TopBar>
-                <Logo to={'/timeline'}>linkr</Logo>
+                <Logo>linkr</Logo>
                 <Arrow onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <IconContext.Provider
                         value={{
