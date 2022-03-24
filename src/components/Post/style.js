@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const PostBox = styled.div`
   background-color: #1e1e1e;
@@ -97,7 +98,11 @@ const TextDescription = styled.div`
   padding-bottom: 4px;
 `;
 
-
+const Hashtag = styled(Link)`
+    cursor: pointer;
+    font-weight: 700;
+    color: #ffffff;
+`;
 
 export {
   PostBox,
@@ -107,4 +112,5 @@ export {
   RightContainer,
   UserName,
   TextDescription,
+  Hashtag,
 };

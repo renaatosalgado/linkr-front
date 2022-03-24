@@ -16,7 +16,6 @@ import {
     NoPostFound,
 } from './style';
 import { ThreeDots } from 'react-loader-spinner';
-
 import api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 import Post from '../../components/Post';

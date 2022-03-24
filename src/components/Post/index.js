@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactHashtag from "@mdnm/react-hashtag";
 
 import {
   PostBox,
@@ -8,6 +9,7 @@ import {
   RightContainer,
   UserName,
   TextDescription,
+  Hashtag,
 } from "./style";
 import LinkPreview from "../LinkPreview";
 import LikeHeart from "../LikeHeart"
@@ -27,7 +29,17 @@ export default function Post({ url, linkTitle, linkDescription, linkImage, textD
               {author}
           </UserName>
           <TextDescription>
-              {textDescription}
+            <ReactHashtag
+              renderHashtag={(hashtagValue) => (
+                <Hashtag 
+                to={`/hashtag/${hashtagValue.replace("#","")}`}
+                >
+                  {hashtagValue}
+                </Hashtag>
+              )}
+            >
+            {textDescription}
+          </ReactHashtag>
           </TextDescription>
           <LinkPreview
             url={url}

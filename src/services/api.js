@@ -63,6 +63,15 @@ async function checkLikeUser(postId, token) {
     return promise;
 }
 
+async function hashtagPost(hashtag, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/posts/hashtag/${hashtag}`, config);
+    return promise;
+}
+
+
+
 const api = {
   createUser,
   login,
@@ -72,6 +81,7 @@ const api = {
   toogleLike,
   totalLikes,
   checkLikeUser,
+  hashtagPost
 };
 
 export default api;

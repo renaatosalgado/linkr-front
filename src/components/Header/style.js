@@ -25,6 +25,7 @@ const Logo = styled.h1`
     font-size: 49px;
     line-height: 54px;
     color: #ffffff;
+    cursor:default;
     @media (max-width: 635px) {
         position: fixed;
         top: 13px;

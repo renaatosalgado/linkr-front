@@ -6,6 +6,7 @@ import Timeline from './pages/Timeline';
 import { AuthProvider } from './contexts/AuthContext';
 import { GlobalStyle } from './css/style';
 import Header from './components/Header';
+import HashtagPage from './pages/HashtagPage';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/" element={<Login />} />
                         <Route path="/timeline" element={<Timeline />} />
+                        <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
