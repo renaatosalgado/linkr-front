@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const TopBar = styled.div`
@@ -13,7 +14,7 @@ const TopBar = styled.div`
     }
 `;
 
-const Logo = styled.h1`
+const Logo = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,6 +26,7 @@ const Logo = styled.h1`
     font-size: 49px;
     line-height: 54px;
     color: #ffffff;
+    cursor: pointer;
     @media (max-width: 635px) {
         position: fixed;
         top: 13px;
