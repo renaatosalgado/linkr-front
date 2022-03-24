@@ -33,7 +33,7 @@ export default function Post({
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
                 </LeftContainer>
                 <RightContainer>
-                    <UserName to={`/users/${userId}`}>{author}</UserName>
+                    <UserName to={`/user/${userId}`}>{author}</UserName>
                     <TextDescription>{textDescription}</TextDescription>
                     <LinkPreview
                         url={url}
