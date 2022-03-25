@@ -20,6 +20,7 @@ import LinkPreview from "../LinkPreview";
 import LikeHeart from "../LikeHeart";
 import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
+import DeleteModal from "../DeleteModal";
 
 export default function Post({
   url,
@@ -40,6 +41,7 @@ export default function Post({
   const [postText, setPostText] = useState(textDescription);
   const [description, setDescription] = useState(postText);
   const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (editFocus) {
@@ -77,8 +79,10 @@ export default function Post({
     }
   }
 
+
   return (
     <PostBox>
+      {openModal && <DeleteModal openModal={openModal} setOpenModal={setOpenModal}/>}
       <PostContainer>
         <LeftContainer>
           <PerfilPicture src={profilePicture} />
@@ -90,7 +94,7 @@ export default function Post({
             {userId === auth.user.id && (
               <IconBox>
                 <EditIcon size="20" onClick={handleEditPost} />
-                <DeleteIcon size="20" />
+                <DeleteIcon size="20" onClick={() => setOpenModal(true)} />
               </IconBox>
             )}
           </TopContainer>
