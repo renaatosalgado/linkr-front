@@ -35,6 +35,13 @@ async function listAllPosts(token) {
   return promise;
 }
 
+async function listUserPosts(token, userId) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
+  return promise;
+}
+
 async function logout(token) {
   const config = createConfig(token);
 
@@ -50,10 +57,10 @@ async function searchUser(userName, token) {
   return promise;
 }
 
-async function toogleLike(body, token) {
+async function toggleLike(body, token) {
   const config = createConfig(token);
 
-  const promise = await axios.post(`${BASE_URL}/likes/toogle`, body, config);
+  const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
   return promise;
 }
 
@@ -71,16 +78,47 @@ async function checkLikeUser(postId, token) {
   return promise;
 }
 
+async function hashtagPost(hashtag, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(
+    `${BASE_URL}/posts/hashtag/${hashtag}`,
+    config
+  );
+  return promise;
+}
+
+async function getTwoNames(postId, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(
+    `${BASE_URL}/likes/${postId}/two-names`,
+    config
+  );
+  return promise;
+}
+
+async function editPost(postId, body, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.put(`${BASE_URL}/posts/${postId}`, body, config);
+  return promise;
+}
+
 const api = {
   createUser,
   login,
   createPost,
   listAllPosts,
   logout,
-  toogleLike,
+  toggleLike,
   totalLikes,
   checkLikeUser,
   searchUser,
+  hashtagPost,
+  editPost,
+  listUserPosts,
+  getTwoNames,
 };
 
 export default api;

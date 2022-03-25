@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@mdnm/react-hashtag": "^3.0.2",
         "axios": "^0.26.1",
         "dotenv": "^16.0.0",
         "react": "^17.0.2",
@@ -12,11 +13,12 @@
         "react-loader-spinner": "^6.0.0-0",
         "react-router-dom": "^6.2.2",
         "react-scripts": "^4.0.3",
-        "styled-components": "^5.3.3",
-        "sweetalert2": "^11.4.6"
+        "sweetalert2": "^11.4.6",
+        "react-tooltip": "^4.2.21",
+        "styled-components": "^5.3.3"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
