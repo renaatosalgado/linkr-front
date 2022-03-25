@@ -133,7 +133,7 @@ const SearchInput = styled.input`
   width: 350px;
   height: 45px;
 
-  border-radius: 8px;
+  //border-radius: 8px;
   padding-left: 17px;
   z-index: 3;
 
@@ -173,20 +173,19 @@ const SearchIcon = styled.div`
 const FoundUsers = styled.div`
   width: 350px;
   background-color: #e7e7e7;
-  border-radius: 8px;
+  //border-radius: 8px;
   position: absolute;
   top: 45px;
   right: 0;
   z-index: 1;
   display: ${(props) => (props.isSearching ? "inherit" : "none")};
 
-  display: flex;
-  flex-direction: column;
-
   @media (max-width: 635px) {
     width: calc((100vw - 30px));
     right: 15px;
     top: 55px;
+
+    flex-direction: column;
   }
 `;
 

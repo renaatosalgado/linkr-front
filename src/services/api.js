@@ -42,8 +42,10 @@ async function logout(token) {
   return promise;
 }
 
-async function searchUser(userName) {
-  const promise = axios.get(`${BASE_URL}/users?name=${userName}`);
+async function searchUser(userName, token) {
+  const config = createConfig(token);
+
+  const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
 
   return promise;
 }

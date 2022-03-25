@@ -59,22 +59,18 @@ function Header() {
   }
 
   useEffect(() => {
-    console.log("rodei");
-    if (searchName.length < 3) {
-      console.log("entrei");
-      return setIsSearching(false);
-    }
-
     api
-      .searchUser(searchName)
+      .searchUser(searchName, auth?.token)
       .then((res) => {
-        setIsSearching(true);
+        setIsSearching(!isSearching);
         setFoundUser(res.data);
-        console.log("then");
       })
       .catch(setIsSearching(false));
 
-    console.log("fim");
+    if (searchName.length < 3) {
+      return setIsSearching(false);
+    }
+    //eslint-disable-next-line
   }, [searchName]);
 
   return (
