@@ -109,6 +109,7 @@ const LinkImg = styled.img`
   right: 0;
   top: 0;
   border-radius: 0px 12px 13px 0px;
+  object-fit: fill;
   cursor: pointer;
 
   @media (max-width: 635px) {
