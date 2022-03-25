@@ -6,6 +6,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react'
 
 const customStyles = {
+  overlay: {zIndex: 1000},
   content: {
     top: '50%',
     left: '50%',
