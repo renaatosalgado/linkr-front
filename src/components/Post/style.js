@@ -85,7 +85,6 @@ const UserName = styled(Link)`
   cursor: pointer;
   @media (max-width: 635px) {
     font-size: 17px;
-    max-width: 57vw;
   }
 `;
 

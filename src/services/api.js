@@ -36,10 +36,10 @@ async function listAllPosts(token) {
 }
 
 async function listUserPosts(token, userId) {
-    const config = createConfig(token);
+  const config = createConfig(token);
 
-    const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
-    return promise;
+  const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
+  return promise;
 }
 
 async function logout(token) {
@@ -49,41 +49,52 @@ async function logout(token) {
   return promise;
 }
 
-async function toggleLike(body, token) {
-    const config = createConfig(token);
+async function searchUser(userName, token) {
+  const config = createConfig(token);
 
-    const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
-    return promise;
+  const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
+
+  return promise;
+}
+
+async function toggleLike(body, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
+  return promise;
 }
 
 async function totalLikes(postId, token) {
   const config = createConfig(token);
 
-    const promise = await axios.get(
-        `${BASE_URL}/likes/${postId}/total`,
-        config
-    );
-    return promise;
-}
-
-async function hashtagPost(hashtag, token) {
-    const config = createConfig(token);
-
-    const promise = await axios.get(`${BASE_URL}/posts/hashtag/${hashtag}`, config);
-    return promise;
-}
-
-async function getTwoNames(postId, token) {
-    const config = createConfig(token);
-
-    const promise = await axios.get(`${BASE_URL}/likes/${postId}/two-names`, config);
-    return promise;
+  const promise = await axios.get(`${BASE_URL}/likes/${postId}/total`, config);
+  return promise;
 }
 
 async function checkLikeUser(postId, token) {
   const config = createConfig(token);
 
   const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
+  return promise;
+}
+
+async function hashtagPost(hashtag, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(
+    `${BASE_URL}/posts/hashtag/${hashtag}`,
+    config
+  );
+  return promise;
+}
+
+async function getTwoNames(postId, token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(
+    `${BASE_URL}/likes/${postId}/two-names`,
+    config
+  );
   return promise;
 }
 
@@ -110,6 +121,7 @@ const api = {
   toggleLike,
   totalLikes,
   checkLikeUser,
+  searchUser,
   hashtagPost,
   editPost,
   listUserPosts,

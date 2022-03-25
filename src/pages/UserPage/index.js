@@ -30,7 +30,7 @@ function UserPage() {
             });
 
         //eslint-disable-next-line
-    }, []);
+    }, [id]);
 
     function setData(data) {
         setPosts(data.posts);
