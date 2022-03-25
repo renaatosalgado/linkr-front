@@ -45,22 +45,24 @@ export default function LikeHeart({ like, setLike, postId }) {
 
     const LOGGED_USER_LIKED = userLiked === true;
     const TOTAL = likes.total - 2;
-    const CHECK_PLURAL = TOTAL === 1 ? '' : 's';
+    const CHECK_PLURAL = TOTAL > 1 ? '' : 's';
 
     if (data.length > 1) {
-      LOGGED_USER_LIKED 
-        ? textTooltip += `Você, ${data[0].name}` 
+      LOGGED_USER_LIKED
+        ? textTooltip += `Você, ${data[0].name}`
         : textTooltip += `${data[0].name}, ${data[1].name}`;
 
-      textTooltip += ` e outra${CHECK_PLURAL} ${TOTAL} pessoa${CHECK_PLURAL}`;
+      TOTAL > 0
+        ? textTooltip += ` e outra${CHECK_PLURAL} ${TOTAL} pessoa${CHECK_PLURAL}`
+        : textTooltip += ` curtiu`;
 
     } else if (data.length === 1) {
-      LOGGED_USER_LIKED 
-        ? textTooltip += `Você e ${data[0].name}` 
+      LOGGED_USER_LIKED
+        ? textTooltip += `Você e ${data[0].name}`
         : textTooltip += `${data[0].name}`;
 
       textTooltip += ` curtiu`;
-      
+
     } else {
       LOGGED_USER_LIKED && (textTooltip += `Você curtiu`);
     }
