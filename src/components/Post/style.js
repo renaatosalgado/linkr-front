@@ -114,15 +114,20 @@ const TopContainer = styled.div`
 
 const IconBox = styled.div`
   display: flex;
-  gap: 5px;
+  gap: 10px;
+  @media (max-width:635px){
+    display: none;
+  }
 `;
 
 const EditIcon = styled(TiPencil)`
   color: #fff;
+  cursor: pointer;
 `;
 
 const DeleteIcon = styled(FiTrash)`
   color: #fff;
+  cursor: pointer;
 `;
 
 const EditInput = styled.input`

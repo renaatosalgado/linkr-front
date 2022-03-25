@@ -1,5 +1,10 @@
 import Modal from 'react-modal'
+import useAuth from '../../hooks/useAuth';
+import api from '../../services/api';
 import { CancelButton, ConfirmButton, ModalText, ButtonBox } from './style';
+import { RotatingLines } from 'react-loader-spinner';
+import { useState } from 'react'
+
 const customStyles = {
   content: {
     top: '50%',
@@ -15,30 +20,44 @@ const customStyles = {
     borderRadius: '50px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 };
 
 Modal.setAppElement('.root');
-export default function DeleteModal({openModal, setOpenModal}){
-  let subtitle
+export default function DeleteModal({openModal, setOpenModal, postId }){
+  const { auth } = useAuth();
+  const [loading, setLoading] = useState(false)
 
-  function afterOpenModal() {
-    subtitle.style.color = '#f00';
+  async function deletePost(){
+    setLoading(true)
+    try {
+      await api.deletePost(postId, auth?.token) 
+      setLoading(false)
+      setOpenModal(false)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+      setOpenModal(false)
+      alert("It wasn't possible to delete post.")
+    }
   }
 
 
   return (
-    <Modal isOpen={openModal}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={() => setOpenModal(false)}
-        style={customStyles}
-        contentLabel="Example Modal">
-      <ModalText>Are you sure you want to delete this post?</ModalText>
-      <ButtonBox>
-        <CancelButton onClick={() => setOpenModal(false)} >No, go back</CancelButton>
-        <ConfirmButton>Yes, delete it</ConfirmButton>
-      </ButtonBox>
+    <Modal 
+    isOpen={openModal}
+    onRequestClose={() => {if(!loading)setOpenModal(false)}}
+    style={customStyles}>
+    {loading ? <RotatingLines width='200' /> : 
+      <>
+        <ModalText>Are you sure you want to delete this post?</ModalText>
+        <ButtonBox>
+          <CancelButton onClick={() => setOpenModal(false)} >No, go back</CancelButton>
+          <ConfirmButton onClick={deletePost}>Yes, delete it</ConfirmButton>
+        </ButtonBox>
+      </>}
     </Modal>
   )
 }

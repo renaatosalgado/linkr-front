@@ -82,7 +82,7 @@ export default function Post({
 
   return (
     <PostBox>
-      {openModal && <DeleteModal openModal={openModal} setOpenModal={setOpenModal}/>}
+      {openModal && <DeleteModal openModal={openModal} setOpenModal={setOpenModal} postId={postId} />}
       <PostContainer>
         <LeftContainer>
           <PerfilPicture src={profilePicture} />

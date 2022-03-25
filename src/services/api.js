@@ -94,6 +94,13 @@ async function editPost(postId, body, token) {
   return promise;
 }
 
+async function deletePost(postId, token){
+  const config = createConfig(token);
+
+  const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
+  return promise
+}
+
 const api = {
   createUser,
   login,
@@ -106,7 +113,8 @@ const api = {
   hashtagPost,
   editPost,
   listUserPosts,
-  getTwoNames
+  getTwoNames,
+  deletePost
 };
 
 export default api;

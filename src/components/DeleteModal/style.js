@@ -19,6 +19,7 @@ background-color: #fff;
 color: #1877F2;
 border-radius: 5px;
 text-align: center;
+cursor: pointer;
 `
 
 const ConfirmButton = styled.button`
@@ -28,6 +29,7 @@ background-color: #1877F2;
 color: #fff;
 border-radius: 5px;
 text-align: center;
+cursor: pointer;
 `
 const ButtonBox = styled.div`
 margin-top: 60px;
