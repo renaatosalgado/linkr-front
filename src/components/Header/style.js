@@ -27,6 +27,7 @@ const Logo = styled(Link)`
     line-height: 54px;
     color: #ffffff;
     cursor: pointer;
+
     @media (max-width: 635px) {
         position: fixed;
         top: 13px;
@@ -65,7 +66,7 @@ const Arrow = styled.div`
     }
 `;
 
-const LogoutButton = styled.div`
+const LogoutButton = styled.button`
     cursor: pointer;
     box-sizing: border-box;
     display: flex;
@@ -83,6 +84,9 @@ const LogoutButton = styled.div`
     position: fixed;
     top: 72px;
     right: 0px;
+    :disabled {
+        cursor: default;
+    }
     @media (max-width: 635px) {
         height: 43px;
         padding-top: 10px;

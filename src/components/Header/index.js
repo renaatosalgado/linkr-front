@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import api from '../../services/api';
-import useAuth from '../../hooks/useAuth';
 import { TopBar, Arrow, Logo, Photo, LogoutButton } from './style';
 import { IoChevronUpOutline, IoChevronDownOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const ref = useRef(null);
     const navigation = useNavigate();
     const { pathname } = useLocation();
-    const { auth, login } = useAuth();
+    const auth = JSON.parse(localStorage?.getItem('auth'));
     const isHomePage = pathname === `/` || pathname === `/sign-up`;
 
     useEffect(() => {
@@ -29,21 +29,23 @@ function Header() {
     }, [isMenuOpen]);
 
     async function logoutHandler() {
+        setLoading(true);
         try {
             await api.logout(auth.token);
-            login('');
+            localStorage.clear();
             navigation('/');
+            setLoading(false);
             setIsMenuOpen(false);
         } catch (error) {
-            console.log(error);
-            alert('Tente novamente');
+            setLoading(false);
+            alert('Something went wrong! Try again');
         }
     }
 
     return (
         !isHomePage && (
             <TopBar>
-                <Logo to={'/timeline'}>linkr</Logo>
+                <Logo to={'/'}>linkr</Logo>
                 <Arrow onClick={() => setIsMenuOpen(!isMenuOpen)}>
                     <IconContext.Provider
                         value={{
@@ -64,7 +66,11 @@ function Header() {
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                 />
                 {isMenuOpen && (
-                    <LogoutButton onClick={() => logoutHandler()} ref={ref}>
+                    <LogoutButton
+                        onClick={() => logoutHandler()}
+                        ref={ref}
+                        disabled={loading}
+                    >
                         Lougout
                     </LogoutButton>
                 )}
