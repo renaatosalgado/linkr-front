@@ -18,15 +18,25 @@ function Login() {
         email: '',
         password: '',
     });
-    const { auth, login } = useAuth();
+    const { login } = useAuth();
+    const auth = JSON.parse(localStorage?.getItem('auth'));
     const navigation = useNavigate();
 
     useEffect(() => {
         if (auth && auth !== '') {
-            navigation('/timeline');
+            authValidation();
         }
         // eslint-disable-next-line
     }, []);
+
+    async function authValidation() {
+        try {
+            await api.authToken(auth.token);
+            navigation('/timeline');
+        } catch {
+            alert('Login to continue');
+        }
+    }
 
     function handleChange({ target }) {
         setFormData({ ...formData, [target.name]: target.value });
@@ -42,8 +52,12 @@ function Login() {
             const { data } = await api.login(user);
             login(data);
             navigation('/timeline');
-        } catch (error) {
-            alert('Erro, tente novamente');
+        } catch ({ response }) {
+            if (response.data === 401) {
+                alert('Email or password incorrect');
+            } else {
+                alert('Something went wrong! Try again');
+            }
             setLoading(false);
         }
     }

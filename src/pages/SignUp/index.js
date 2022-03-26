@@ -35,8 +35,12 @@ function SignUp() {
         try {
             await api.createUser(user);
             navigation('/');
-        } catch (error) {
-            alert('Erro, tente novamente');
+        } catch ({ response }) {
+            if (response.data === 409) {
+                alert('This email is already in use');
+            } else {
+                alert('Something went wrong! Try again');
+            }
             setLoading(false);
         }
     }

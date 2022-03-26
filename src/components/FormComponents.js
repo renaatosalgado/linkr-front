@@ -58,6 +58,9 @@ const Button = styled.button`
     color: #ffffff;
     background: #1877f2;
     border-radius: 5px;
+    :disabled {
+        cursor: default;
+    }
 `;
 
 const StyledLink = styled(Link)`

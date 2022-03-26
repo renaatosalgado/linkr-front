@@ -70,7 +70,8 @@ const Arrow = styled.div`
   }
 `;
 
-const LogoutButton = styled.div`
+
+const LogoutButton = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   display: flex;
