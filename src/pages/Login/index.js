@@ -11,6 +11,7 @@ import {
 import { Logo, LogoContainer, Text } from '../../components/Logo';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 function Login() {
     const [loading, setLoading] = useState(false);
@@ -34,7 +35,11 @@ function Login() {
             await api.authToken(auth.token);
             navigation('/timeline');
         } catch {
-            alert('Login to continue');
+            Swal.fire({
+                icon: 'error',
+                title: 'Ops!',
+                text: 'Please login to continue',
+            });
         }
     }
 
@@ -53,10 +58,18 @@ function Login() {
             login(data);
             navigation('/timeline');
         } catch ({ response }) {
-            if (response.data === 401) {
-                alert('Email or password incorrect');
+            if (response.status === 401) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Email or password incorrect',
+                });
             } else {
-                alert('Something went wrong! Try again');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong! Try again',
+                });
             }
             setLoading(false);
         }
