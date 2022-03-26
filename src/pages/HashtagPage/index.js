@@ -61,6 +61,7 @@ export default function Timeline() {
                                 textDescription={post.description}
                                 author={post.author}
                                 profilePicture={post.profilePicture}
+                                userId={post.userId}
                             />
                         ))
                     )}

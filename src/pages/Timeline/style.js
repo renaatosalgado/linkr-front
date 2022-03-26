@@ -41,8 +41,9 @@ const Title = styled.div`
 
   @media (max-width: 635px) {
     font-size: 33px;
+    margin-top: 120px;
     margin-left: 17px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 `;
 
