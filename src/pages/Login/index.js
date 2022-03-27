@@ -9,9 +9,9 @@ import {
     FormContainer,
 } from '../../components/FormComponents';
 import { Logo, LogoContainer, Text } from '../../components/Logo';
-import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import useAuth from '../../hooks/useAuth';
 
 function Login() {
     const [loading, setLoading] = useState(false);
@@ -19,8 +19,8 @@ function Login() {
         email: '',
         password: '',
     });
-    const { login } = useAuth();
-    const auth = JSON.parse(localStorage?.getItem('auth'));
+    const auth = JSON.parse(localStorage.getItem('auth'));
+    const { setAuthData } = useAuth();
     const navigation = useNavigate();
 
     useEffect(() => {
@@ -55,7 +55,8 @@ function Login() {
 
         try {
             const { data } = await api.login(user);
-            login(data);
+            localStorage.setItem('auth', JSON.stringify(data));
+            setAuthData(data);
             navigation('/timeline');
         } catch ({ response }) {
             if (response.status === 401) {

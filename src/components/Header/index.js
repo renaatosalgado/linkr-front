@@ -19,6 +19,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
+import Swal from 'sweetalert2';
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +27,7 @@ function Header() {
     const ref = useRef(null);
     const navigation = useNavigate();
     const { pathname } = useLocation();
-    const auth = JSON.parse(localStorage?.getItem('auth'));
+    const auth = JSON.parse(localStorage.getItem('auth'));
     const isHomePage = pathname === `/` || pathname === `/sign-up`;
     const [searchName, setSearchName] = useState('');
     const [foundUser, setFoundUser] = useState([]);
@@ -49,14 +50,18 @@ function Header() {
     async function logoutHandler() {
         setLoading(true);
         try {
-            await api.logout(auth.token);
+            await api.logout(auth?.token);
             localStorage.clear();
             navigation('/');
             setLoading(false);
             setIsMenuOpen(false);
         } catch (error) {
             setLoading(false);
-            alert('Something went wrong! Try again');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: 'Something went wrong! Try again',
+            });
         }
     }
 
@@ -77,7 +82,7 @@ function Header() {
     return (
         !isHomePage && (
             <TopBar>
-                <Logo to={'/'}>linkr</Logo>
+                <Logo to={'/timeline'}>linkr</Logo>
 
                 <SearchContainer>
                     <DebounceInput
