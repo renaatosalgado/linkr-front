@@ -16,7 +16,7 @@ import {
   NoPostFound,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
-
+import Swal from "sweetalert2";
 import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
 import Post from "../../components/Post";
@@ -38,7 +38,11 @@ export default function Timeline() {
         setIsLoadingPosts(false);
       })
       .catch((err) => {
-        console.log(err);
+        Swal.fire({
+            icon: "error",
+            title: "Failed to update the timeline!",
+            text: "An error occured while trying to fetch the posts, please refresh the page.",
+          });
       });
 
     //eslint-disable-next-line
@@ -61,9 +65,11 @@ export default function Timeline() {
         window.location.reload();
       })
       .catch(() => {
-        alert(
-          "There was an error while posting your link. Repeat the procedure."
-        );
+        Swal.fire({
+          icon: "error",
+          title: "Post not published!",
+          text: "There was an error while posting your link. Repeat the procedure.",
+        });
         setLoading(false);
       });
   }
@@ -131,7 +137,7 @@ export default function Timeline() {
                         ))
                     )}
                 </TimelineBody>
-                    <Trending />
+              <Trending />
             </TimelineBox>
         </TimelineContainer>
     );

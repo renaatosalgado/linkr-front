@@ -26,11 +26,11 @@ const GlobalStyle = createGlobalStyle`
                         border-radius:8px;
                         }
                 ::-webkit-scrollbar-thumb {
-                        background: #171717; 
+                        background: #535353; 
                         border-radius:8px;
                         }
                 ::-webkit-scrollbar-thumb:hover {
-                        background: #171717; 
+                        background: #535353; 
                         border-radius:8px;
                         }
         }

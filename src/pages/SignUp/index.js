@@ -11,6 +11,7 @@ import {
 } from '../../components/FormComponents';
 import { Logo, LogoContainer, Text } from '../../components/Logo';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 function SignUp() {
     const [loading, setLoading] = useState(false);
@@ -35,8 +36,20 @@ function SignUp() {
         try {
             await api.createUser(user);
             navigation('/');
-        } catch (error) {
-            alert('Erro, tente novamente');
+        } catch ({ response }) {
+            if (response.status === 409) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ops!',
+                    text: 'Email already in use',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong! Try again',
+                });
+            }
             setLoading(false);
         }
     }

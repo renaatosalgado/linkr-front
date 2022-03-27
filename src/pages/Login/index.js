@@ -11,6 +11,7 @@ import {
 import { Logo, LogoContainer, Text } from '../../components/Logo';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 function Login() {
     const [loading, setLoading] = useState(false);
@@ -18,15 +19,29 @@ function Login() {
         email: '',
         password: '',
     });
-    const { auth, login } = useAuth();
+    const { login } = useAuth();
+    const auth = JSON.parse(localStorage?.getItem('auth'));
     const navigation = useNavigate();
 
     useEffect(() => {
         if (auth && auth !== '') {
-            navigation('/timeline');
+            authValidation();
         }
         // eslint-disable-next-line
     }, []);
+
+    async function authValidation() {
+        try {
+            await api.authToken(auth.token);
+            navigation('/timeline');
+        } catch {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ops!',
+                text: 'Please login to continue',
+            });
+        }
+    }
 
     function handleChange({ target }) {
         setFormData({ ...formData, [target.name]: target.value });
@@ -42,8 +57,20 @@ function Login() {
             const { data } = await api.login(user);
             login(data);
             navigation('/timeline');
-        } catch (error) {
-            alert('Erro, tente novamente');
+        } catch ({ response }) {
+            if (response.status === 401) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Email or password incorrect',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Something went wrong! Try again',
+                });
+            }
             setLoading(false);
         }
     }
