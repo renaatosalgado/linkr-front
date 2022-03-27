@@ -24,7 +24,6 @@ export default function Timeline() {
         api.hashtagPost(title,auth?.token)
             .then((res) => {
                 setPosts(res.data);
-                console.log(res.data);
                 setIsLoadingPosts(false);
             })
             .catch((err) => {

@@ -20,6 +20,7 @@ import { ThreeDots } from "react-loader-spinner";
 import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
 import Post from "../../components/Post";
+import Trending from "../../components/Trending";
 
 export default function Timeline() {
   const { auth } = useAuth();
@@ -130,6 +131,7 @@ export default function Timeline() {
                         ))
                     )}
                 </TimelineBody>
+                    <Trending />
             </TimelineBox>
         </TimelineContainer>
     );

@@ -107,8 +107,7 @@ export default function Post({
             <ReactHashtag
               renderHashtag={(hashtagValue) => (
                 <Hashtag 
-                to={`/hashtag/${hashtagValue.replace("#","")}`}
-                >
+                to={`/hashtag/${hashtagValue.replace("#","")}`}>
                   {hashtagValue}
                 </Hashtag>
               )}

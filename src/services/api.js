@@ -94,6 +94,12 @@ async function editPost(postId, body, token) {
   return promise;
 }
 
+async function listTrending(token){
+    const config = createConfig(token);
+    const promise = await axios.get(`${BASE_URL}/trends`, config);
+    return promise;
+}
+
 const api = {
   createUser,
   login,
@@ -106,7 +112,8 @@ const api = {
   hashtagPost,
   editPost,
   listUserPosts,
-  getTwoNames
+  getTwoNames,
+  listTrending,
 };
 
 export default api;
