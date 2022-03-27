@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   TimelineContainer,
   TimelineBox,
@@ -23,56 +23,54 @@ import Post from "../../components/Post";
 import Trending from "../../components/Trending";
 
 export default function Timeline() {
-  const { auth } = useAuth();
-  const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [isLoadingPosts, setIsLoadingPosts] = useState(true);
-  const [posts, setPosts] = useState([]);
+    const { auth } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [url, setUrl] = useState('');
+    const [description, setDescription] = useState('');
+    const [isLoadingPosts, setIsLoadingPosts] = useState(true);
+    const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    api
-      .listAllPosts(auth?.token)
-      .then((res) => {
-        setPosts(res.data);
-        setIsLoadingPosts(false);
-      })
-      .catch((err) => {
-        Swal.fire({
-            icon: "error",
-            title: "Failed to update the timeline!",
-            text: "An error occured while trying to fetch the posts, please refresh the page.",
-          });
-      });
+    useEffect(() => {
+        api.listAllPosts(auth?.token)
+            .then((res) => {
+                setPosts(res.data);
+                setIsLoadingPosts(false);
+            })
+            .catch((err) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to update the timeline!',
+                    text: 'An error occured while trying to fetch the posts, please refresh the page.',
+                });
+            });
 
-    //eslint-disable-next-line
-  }, []);
+        //eslint-disable-next-line
+    }, []);
 
-  function publishPost(event) {
-    event.preventDefault();
-    setLoading(true);
+    function publishPost(event) {
+        event.preventDefault();
+        setLoading(true);
 
-    const body = {
-      description,
-      url,
-    };
-    api
-      .createPost(body, auth?.token)
-      .then((res) => {
-        setLoading(false);
-        setDescription("");
-        setUrl("");
-        window.location.reload();
-      })
-      .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "Post not published!",
-          text: "There was an error while posting your link. Repeat the procedure.",
-        });
-        setLoading(false);
-      });
-  }
+        const body = {
+            description,
+            url,
+        };
+        api.createPost(body, auth?.token)
+            .then((res) => {
+                setLoading(false);
+                setDescription('');
+                setUrl('');
+                window.location.reload();
+            })
+            .catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Post not published!',
+                    text: 'There was an error while posting your link. Repeat the procedure.',
+                });
+                setLoading(false);
+            });
+    }
 
     return (
         <TimelineContainer>
