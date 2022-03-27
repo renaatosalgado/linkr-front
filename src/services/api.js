@@ -90,6 +90,12 @@ async function hashtagPost(hashtag, token) {
   return promise;
 }
 
+async function listTrending(token){
+    const config = createConfig(token);
+    const promise = await axios.get(`${BASE_URL}/trends`, config);
+    return promise;
+}
+
 async function getTwoNames(postId, token) {
   const config = createConfig(token);
 
@@ -140,6 +146,7 @@ const api = {
   editPost,
   listUserPosts,
   getTwoNames,
+  listTrending,
   deletePost,
   authToken,
 };

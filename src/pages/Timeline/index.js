@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import {
-    TimelineContainer,
-    TimelineBox,
-    TimelineBody,
-    Title,
-    CreatePost,
-    CreatePostImg,
-    ProfilePic,
-    Form,
-    Url,
-    Description,
-    Buttons,
-    Publish,
-    CenteredContainer,
-    NoPostFound,
-} from './style';
-import { ThreeDots } from 'react-loader-spinner';
-import Swal from 'sweetalert2';
-import api from '../../services/api';
-import useAuth from '../../hooks/useAuth';
-import Post from '../../components/Post';
+  TimelineContainer,
+  TimelineBox,
+  TimelineBody,
+  Title,
+  CreatePost,
+  CreatePostImg,
+  ProfilePic,
+  Form,
+  Url,
+  Description,
+  Buttons,
+  Publish,
+  CenteredContainer,
+  NoPostFound,
+} from "./style";
+import { ThreeDots } from "react-loader-spinner";
+import Swal from "sweetalert2";
+import api from "../../services/api";
+import useAuth from "../../hooks/useAuth";
+import Post from "../../components/Post";
+import Trending from "../../components/Trending";
 
 export default function Timeline() {
     const { auth } = useAuth();
@@ -134,6 +135,7 @@ export default function Timeline() {
                         ))
                     )}
                 </TimelineBody>
+              <Trending />
             </TimelineBox>
         </TimelineContainer>
     );
