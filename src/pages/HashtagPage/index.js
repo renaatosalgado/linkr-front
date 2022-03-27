@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Trending from "../../components/Trending";
 import { useLocation } from 'react-router';
 import {
     TimelineContainer,
@@ -65,6 +66,7 @@ export default function Timeline() {
                         ))
                     )}
                 </TimelineBody>
+                <Trending />
             </TimelineBox>
         </TimelineContainer>
     );

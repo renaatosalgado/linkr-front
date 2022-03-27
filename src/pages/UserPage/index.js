@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Trending from "../../components/Trending";
 import { useParams } from 'react-router-dom';
 import {
     TimelineContainer,
@@ -71,6 +72,7 @@ function UserPage() {
                         ))
                     )}
                 </TimelineBody>
+                <Trending />
             </TimelineBox>
         </TimelineContainer>
     );

@@ -77,7 +77,7 @@ function Header() {
     return (
         !isHomePage && (
             <TopBar>
-                <Logo to={'/'}>linkr</Logo>
+                <Logo onClick={()=> navigation("/timeline")}>linkr</Logo>
 
                 <SearchContainer>
                     <DebounceInput
