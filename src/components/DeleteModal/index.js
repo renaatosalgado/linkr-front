@@ -53,7 +53,7 @@ export default function DeleteModal({openModal, setOpenModal, postId }){
     style={customStyles}>
     {loading ? <RotatingLines width='200' /> : 
       <>
-        <ModalText>Are you sure you want to delete this post?</ModalText>
+        <ModalText>Are you sure you want <br/> to delete this post?</ModalText>
         <ButtonBox>
           <CancelButton onClick={() => setOpenModal(false)} >No, go back</CancelButton>
           <ConfirmButton onClick={deletePost}>Yes, delete it</ConfirmButton>

@@ -114,9 +114,6 @@ const TopContainer = styled.div`
 const IconBox = styled.div`
   display: flex;
   gap: 10px;
-  @media (max-width:635px){
-    display: none;
-  }
 `;
 
 const EditIcon = styled(TiPencil)`
