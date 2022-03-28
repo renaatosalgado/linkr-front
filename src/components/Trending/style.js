@@ -11,7 +11,7 @@ export const TrendingBox = styled.div`
     margin: 110px 25px;
     color: #FFFFFF;
     font-weight: 700;
-    @media (max-width: 635px) {
+    @media (max-width: 1000px) {
     display: none;
   }
 

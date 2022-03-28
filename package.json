@@ -19,7 +19,8 @@
         "sweetalert2": "^11.4.7"
     },
     "scripts": {
-        "start": "react-scripts --openssl-legacy-provider start",
+        "start": "CHOKIDAR_USEPOLLING=true react-scripts start",
+        "startw": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
