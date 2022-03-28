@@ -64,6 +64,7 @@ async function toggleLike(body, token) {
   return promise;
 }
 
+
 async function totalLikes(postId, token) {
     const config = createConfig(token);
 
@@ -105,6 +106,8 @@ async function getTwoNames(postId, token) {
   );
   return promise;
 }
+
+
 
 async function editPost(postId, body, token) {
     const config = createConfig(token);

@@ -7,7 +7,6 @@ const TimelineContainer = styled.div`
     padding-top: 150px;
     display: flex;
     justify-content: center;
-
     @media (max-width: 635px) {
         padding-top: 20px;
     }
@@ -17,7 +16,6 @@ const TimelineBox = styled.div`
     display: flex;
     padding-bottom: 30px;
     margin: 0 auto;
-
     @media (max-width: 635px) {
         width: 100%;
     }
@@ -26,7 +24,6 @@ const TimelineBox = styled.div`
 const TimelineBody = styled.div`
     width: 611px;
     margin: 0 auto;
-
     @media (max-width: 635px) {
         width: 100%;
         margin-top: 130px;
@@ -40,7 +37,6 @@ const Title = styled.div`
     color: #ffffff;
     margin-bottom: 50px;
     word-break: break-all;
-
     @media (max-width: 635px) {
         font-size: 33px;
         margin-left: 17px;
@@ -53,7 +49,6 @@ const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     @media (max-width: 635px) {
         min-width: 100%;
     }
@@ -68,13 +63,11 @@ const NoPostFound = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-family: 'Lato';
     font-style: normal;
     font-weight: normal;
     font-size: 19px;
     color: #ffffff;
-
     @media (max-width: 635px) {
         min-width: 100%;
         width: 100%;

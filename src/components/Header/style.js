@@ -29,7 +29,6 @@ const Logo = styled(Link)`
     &:hover {
         cursor: pointer;
     }
-
     @media (max-width: 635px) {
         position: fixed;
         top: 13px;
@@ -61,7 +60,6 @@ const Arrow = styled.div`
     position: fixed;
     top: 20px;
     right: 85px;
-
     @media (max-width: 635px) {
         position: fixed;
         top: 20px;
@@ -101,28 +99,21 @@ const SearchContainer = styled.div`
     position: fixed;
     left: calc((100vw - 350px) / 2);
     top: 16px;
-
     width: 350px;
     height: 45px;
-
     font-family: 'Lato';
     font-size: 19px;
     line-height: 22.8px;
-
     @media (max-width: 635px) {
         //position: aboslute;
         top: 72px;
         left: 0;
-
         width: 100vw;
         height: 65px;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         background-color: #333333;
-
         border: none;
         outline: none;
         //width: calc((100vw - 20px));
@@ -131,24 +122,19 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
     background-color: #ffffff;
-
     width: 350px;
     height: 45px;
-
     //border-radius: 8px;
     padding-left: 17px;
     z-index: 3;
-
     &::placeholder {
         font-size: 19px;
         line-height: 22.8px;
         color: #c6c6c6;
     }
-
     &:focus {
         outline: none;
     }
-
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
     }
@@ -159,12 +145,10 @@ const SearchIcon = styled.div`
     position: absolute;
     top: 11px;
     right: 15px;
-
     &:hover {
         cursor: pointer;
         color: #1877f2;
     }
-
     @media (max-width: 635px) {
         top: 22px;
         right: 30px;
@@ -181,12 +165,10 @@ const FoundUsers = styled.div`
     right: 0;
     z-index: 1;
     display: ${(props) => (props.isSearching ? 'inherit' : 'none')};
-
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
         right: 15px;
         top: 55px;
-
         flex-direction: column;
     }
 `;
@@ -197,16 +179,13 @@ const SingleUser = styled.div`
     display: flex;
     align-items: center;
     color: #515151;
-
     p {
         font-size: 19px;
         font-family: 'Lato';
         margin-left: 30px;
         word-break: break-word;
-
         cursor: pointer;
     }
-
     span {
         color: #c5c5c5;
         font-size: 19px;
@@ -219,9 +198,7 @@ const SingleUserAvatar = styled.div`
     height: 39px;
     margin-bottom: 5px;
     margin-left: 10px;
-
     cursor: pointer;
-
     img {
         width: 39px;
         height: 39px;

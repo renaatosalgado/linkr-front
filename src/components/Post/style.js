@@ -7,7 +7,6 @@ const PostBox = styled.div`
   background-color: #1e1e1e;
   width: 610px;
   border-radius: 16px;
-
   @media (max-width: 635px) {
     width: 100%;
     border-radius: 0;
@@ -22,7 +21,6 @@ const PostContainer = styled.div`
   border-radius: 16px;
   margin-top: ${(props) => (props.isReposted ? "0" : "38px")};
   display: flex;
-
   @media (max-width: 635px) {
     width: 100%;
     border-radius: 0;
@@ -37,7 +35,6 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   @media (max-width: 635px) {
     /* padding: 9px 15px; */
     padding: 9px 3px;
@@ -65,7 +62,6 @@ const RightContainer = styled.div`
   width: calc(100% - 86px);
   display: flex;
   flex-direction: column;
-
   @media (max-width: 635px) {
     padding-top: 10px;
     padding-right: 18px;
