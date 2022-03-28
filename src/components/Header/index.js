@@ -68,7 +68,7 @@ function Header() {
     useEffect(() => {
         api.searchUser(searchName, auth?.token)
             .then((res) => {
-                setIsSearching(!isSearching);
+                setIsSearching(true);
                 setFoundUser(res.data);
             })
             .catch(setIsSearching(false));

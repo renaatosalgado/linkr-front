@@ -29,6 +29,7 @@ const TimelineBody = styled.div`
 
   @media (max-width: 635px) {
     width: 100%;
+    margin-top: 130px;
   }
 `;
 

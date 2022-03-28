@@ -29,6 +29,7 @@ const TimelineBody = styled.div`
 
     @media (max-width: 635px) {
         width: 100%;
+        margin-top: 130px;
     }
 `;
 
@@ -38,6 +39,7 @@ const Title = styled.div`
     font-size: 43px;
     color: #ffffff;
     margin-bottom: 50px;
+    word-break: break-all;
 
     @media (max-width: 635px) {
         font-size: 33px;
