@@ -30,6 +30,7 @@ export default function Timeline() {
             .catch((err) => {
                 console.log(err);
             });
+            window.scrollTo(0, 0)
             
         //eslint-disable-next-line
     }, [title]);
