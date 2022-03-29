@@ -9,7 +9,7 @@ import {
     FormContainer,
 } from '../../components/FormComponents';
 import { Logo, LogoContainer, Text } from '../../components/Logo';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 function SignUp() {
@@ -21,6 +21,7 @@ function SignUp() {
         picture: '',
     });
     const navigation = useNavigate();
+    const { pathname } = useLocation();
 
     function handleChange({ target }) {
         setFormData({ ...formData, [target.name]: target.value });
@@ -59,7 +60,7 @@ function SignUp() {
                 <Logo>linkr</Logo>
                 <Text>save, share and discover the best links on the web</Text>
             </LogoContainer>
-            <FormContainer>
+            <FormContainer page={pathname}>
                 <Form onSubmit={handleSubmit}>
                     <Input
                         placeholder="e-mail"
