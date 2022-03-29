@@ -7,11 +7,12 @@ const LogoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    padding: 0 5%;
+    justify-content: flex-start;
+    padding: 30vh 5vw;
     @media (max-width: 700px) {
+        padding: 10px 0 27px 0;
         width: 100vw;
-        height: 175px;
+        height: 200px;
         align-items: center;
     }
 `;
@@ -31,6 +32,7 @@ const Logo = styled.h1`
 
 const Text = styled.p`
     font-family: 'Oswald';
+    max-width: 442px;
     font-weight: 700;
     font-size: 43px;
     line-height: 64px;
@@ -39,6 +41,7 @@ const Text = styled.p`
         font-size: 23px;
         line-height: 34px;
         text-align: center;
+        max-width: 237px;
     }
 `;
 
