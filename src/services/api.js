@@ -59,7 +59,7 @@ async function searchUser(userName, token) {
 
 async function toggleLike(body, token) {
   const config = createConfig(token);
-
+  
   const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
   return promise;
 }
@@ -126,8 +126,19 @@ async function authToken(token) {
 
 async function deletePost(postId, token){
   const config = createConfig(token);
-
   const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
+  return promise
+}
+
+async function followUser(followId, token){
+  const config = createConfig(token);
+  const promise = await axios.post(`${BASE_URL}/${followId}/follow`,{}, config)
+  return promise
+}
+
+async function isFollow(followId, token){
+  const config = createConfig(token);
+  const promise = await axios.get(`${BASE_URL}/is-follow/${followId}`, config)
   return promise
 }
 
@@ -149,6 +160,8 @@ const api = {
   listTrending,
   deletePost,
   authToken,
+  followUser,
+  isFollow,
 };
 
 export default api;
