@@ -84,7 +84,7 @@ function Header() {
             <TopBar>
                 <Logo to={'/timeline'}>linkr</Logo>
 
-                <SearchContainer>
+                <SearchContainer foundUser={foundUser} searchName={searchName}>
                     <DebounceInput
                         minLength={3}
                         debounceTimeout={300}
