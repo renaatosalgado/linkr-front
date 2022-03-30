@@ -15,12 +15,15 @@ import {
     EditIcon,
     DeleteIcon,
     EditInput,
+    RepostIcon,
+    LeftIcons
 } from './style';
 import LinkPreview from '../LinkPreview';
 import LikeHeart from '../LikeHeart';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import DeleteModal from '../DeleteModal';
+import RepostModal from '../RepostModal';
 
 export default function Post({
     url,
@@ -41,7 +44,8 @@ export default function Post({
     const [postText, setPostText] = useState(textDescription);
     const [description, setDescription] = useState(postText);
     const [loading, setLoading] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openRepostModal, setOpenRepostModal] = useState(false);
 
     useEffect(() => {
         if (editFocus) {
@@ -81,17 +85,28 @@ export default function Post({
 
     return (
         <PostBox key={postId}>
-            {openModal && (
+            {openDeleteModal && (
                 <DeleteModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
+                    openDeleteModal={openDeleteModal}
+                    setOpenDeleteModal={setOpenDeleteModal}
+                    postId={postId}
+                />
+            )}
+            {openRepostModal && (
+                <RepostModal
+                    openRepostModal={openRepostModal}
+                    setOpenRepostModal={setOpenRepostModal}
                     postId={postId}
                 />
             )}
             <PostContainer>
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
-                    <LikeHeart like={like} setLike={setLike} postId={postId} />
+                        <LeftIcons>
+                            <LikeHeart like={like} setLike={setLike} postId={postId} />
+                            <RepostIcon onClick={() => setOpenRepostModal(true)}/>
+                            <span>0 re-posts</span>
+                        </LeftIcons>
                 </LeftContainer>
                 <RightContainer>
                     <TopContainer>
@@ -101,7 +116,7 @@ export default function Post({
                                 <EditIcon size="20" onClick={handleEditPost} />
                                 <DeleteIcon
                                     size="20"
-                                    onClick={() => setOpenModal(true)}
+                                    onClick={() => setOpenDeleteModal(true)}
                                 />
                             </IconBox>
                         )}
