@@ -31,19 +31,18 @@ export default function RepostModal({openRepostModal, setOpenRepostModal, postId
   const [loading, setLoading] = useState(false)
 
   async function handleRepost(){
-    console.log("teste")
-    // setLoading(true)
-    // try {
-    //   await api.rePost(postId, auth?.token) 
-    //   setLoading(false)
-    //   setOpenRepostModal(false)
-    //   window.location.reload()
-    // } catch (error) {
-    //   console.log(error)
-    //   setLoading(false)
-    //   setOpenRepostModal(false)
-    //   alert("It wasn't possible to repost the post.")
-    // }
+    setLoading(true)
+    try {
+      await api.rePost(postId, auth?.token) 
+      setLoading(false)
+      setOpenRepostModal(false)
+      window.location.reload()
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+      setOpenRepostModal(false)
+      alert("It wasn't possible to repost the post.")
+    }
   }
 
 

@@ -131,6 +131,13 @@ async function deletePost(postId, token){
   return promise
 }
 
+async function rePost(postId, token){
+  const config = createConfig(token);
+
+  const promise = await axios.post(`${BASE_URL}/posts/${postId}/repost`,null, config)
+  return promise
+}
+
 const api = {
 
   createUser,
@@ -149,6 +156,7 @@ const api = {
   listTrending,
   deletePost,
   authToken,
+  rePost
 };
 
 export default api;

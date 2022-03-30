@@ -35,6 +35,7 @@ export default function Post({
     author,
     profilePicture,
     userId,
+    repost
 }) {
     const [like, setLike] = useState(false);
     const { auth } = useAuth();
@@ -105,7 +106,7 @@ export default function Post({
                         <LeftIcons>
                             <LikeHeart like={like} setLike={setLike} postId={postId} />
                             <RepostIcon onClick={() => setOpenRepostModal(true)}/>
-                            <span>0 re-posts</span>
+                            <span>{repost} re-posts</span>
                         </LeftIcons>
                 </LeftContainer>
                 <RightContainer>
