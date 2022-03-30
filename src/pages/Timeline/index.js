@@ -21,6 +21,7 @@ import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
 import Post from "../../components/Post";
 import Trending from "../../components/Trending";
+import NewPostsButton from '../../components/NewPostsButton';
 
 export default function Timeline() {
     const { auth } = useAuth();
@@ -108,6 +109,9 @@ export default function Timeline() {
                             </Buttons>
                         </Form>
                     </CreatePost>
+
+                    <NewPostsButton newPostsQuantity={10}/>
+
                     {isLoadingPosts ? (
                         <CenteredContainer>
                             <ThreeDots
