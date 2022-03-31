@@ -21,6 +21,8 @@ import LikeHeart from '../LikeHeart';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import DeleteModal from '../DeleteModal';
+import CommentsIcon from '../CommentsIcon/index';
+import Comments from '../Comments/index';
 
 export default function Post({
     url,
@@ -92,6 +94,7 @@ export default function Post({
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
+                    <CommentsIcon postId={postId} />
                 </LeftContainer>
                 <RightContainer>
                     <TopContainer>
@@ -140,6 +143,7 @@ export default function Post({
                     />
                 </RightContainer>
             </PostContainer>
+            <Comments postId={postId} />
         </PostBox>
     );
 }
