@@ -19,15 +19,13 @@ import { IconContext } from 'react-icons';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 
-function Comments({ postId, commentsOpen }) {
+function Comments({ postId, commentsOpen, comments, setComments }) {
     const [loading, setLoading] = useState(false);
-    const [comments, setComments] = useState([]);
     const { auth } = useAuth();
     const [commentText, setCommentText] = useState('');
     const [follows, setFollows] = useState([]);
 
     useEffect(() => {
-        getComments();
         getFollows();
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

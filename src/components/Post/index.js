@@ -178,7 +178,12 @@ export default function Post({
                     />
                 </RightContainer>
             </PostContainer>
-            <Comments postId={postId} commentsOpen={areCommentsOpen} />
+            <Comments
+                postId={postId}
+                commentsOpen={areCommentsOpen}
+                comments={comments}
+                setComments={setComments}
+            />
         </PostBox>
     );
 }
