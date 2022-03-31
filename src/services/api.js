@@ -36,10 +36,10 @@ async function listAllPosts(token) {
 }
 
 async function listUserPosts(token, userId) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
-  return promise;
+    const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
+    return promise;
 }
 
 async function logout(token) {
@@ -50,60 +50,61 @@ async function logout(token) {
 }
 
 async function searchUser(userName, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
+    const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
 
-  return promise;
+    return promise;
 }
 
 async function toggleLike(body, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
-  return promise;
+    const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
+    return promise;
 }
 
 async function totalLikes(postId, token) {
     const config = createConfig(token);
 
-  const promise = await axios.get(`${BASE_URL}/likes/${postId}/total`, config);
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/likes/${postId}/total`,
+        config
+    );
+    return promise;
 }
 
 async function checkLikeUser(postId, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-
-  const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
-  return promise;
+    const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
+    return promise;
 }
 
 async function hashtagPost(hashtag, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-
-  const promise = await axios.get(
-    `${BASE_URL}/posts/hashtag/${hashtag}`,
-    config
-  );
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/posts/hashtag/${hashtag}`,
+        config
+    );
+    return promise;
 }
 
-async function listTrending(token){
+async function listTrending(token) {
     const config = createConfig(token);
     const promise = await axios.get(`${BASE_URL}/trends`, config);
     return promise;
 }
 
 async function getTwoNames(postId, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.get(
-    `${BASE_URL}/likes/${postId}/two-names`,
-    config
-  );
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/likes/${postId}/two-names`,
+        config
+    );
+    return promise;
 }
 
 async function editPost(postId, body, token) {
@@ -126,16 +127,42 @@ async function authToken(token) {
 
 async function deletePost(postId, token){
   const config = createConfig(token);
-
+  
   const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
   return promise
 }
 
-async function getPostsQuantity(token) {
+async function followUser(followId, token){
   const config = createConfig(token);
+  const promise = await axios.post(`${BASE_URL}/${followId}/follow`,{}, config)
+  return promise
+}
 
-  const promise = await axios.get(`${BASE_URL}/posts/quantity`, config);
-  return promise;
+async function isFollow(followId, token){
+  const config = createConfig(token);
+  const promise = await axios.get(`${BASE_URL}/is-follow/${followId}`, config)
+  return promise
+}
+
+async function getComments(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(
+        `${BASE_URL}/posts/${postId}/comments`,
+        config
+    );
+    return promise;
+}
+
+async function createComment(text, postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.post(
+        `${BASE_URL}/posts/${postId}/comments`,
+        text,
+        config
+    );
+    return promise;
 }
 
 const api = {
@@ -156,7 +183,10 @@ const api = {
   listTrending,
   deletePost,
   authToken,
-  getPostsQuantity
+  followUser,
+  isFollow,
+  getComments,
+  createComment,
 };
 
 export default api;

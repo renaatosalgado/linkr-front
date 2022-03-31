@@ -20,7 +20,10 @@ function App() {
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/" element={<Login />} />
                         <Route path="/timeline" element={<Timeline />} />
-                        <Route path="/hashtag/:hashtag" element={<HashtagPage />} />
+                        <Route
+                            path="/hashtag/:hashtag"
+                            element={<HashtagPage />}
+                        />
                         <Route path="/user/:id" element={<UserPage />}></Route>
                     </Routes>
                 </BrowserRouter>
