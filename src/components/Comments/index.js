@@ -19,14 +19,15 @@ import { IconContext } from 'react-icons';
 import { IoPaperPlaneOutline } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 
-function Comments({ postId, commentsOpen }) {
+function Comments({ postId, commentsOpen, comments, setComments }) {
     const [loading, setLoading] = useState(false);
-    const [comments, setComments] = useState([]);
     const { auth } = useAuth();
     const [commentText, setCommentText] = useState('');
+    const [follows, setFollows] = useState([]);
 
     useEffect(() => {
-        getComments();
+        getFollows();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -34,7 +35,18 @@ function Comments({ postId, commentsOpen }) {
         try {
             const response = await api.getComments(postId, auth.token);
             setComments(response.data);
-        } catch (error) {}
+        } catch {}
+    }
+
+    async function getFollows() {
+        try {
+            const { data } = await api.getFollows(auth?.token);
+            setFollows(data);
+        } catch {}
+    }
+
+    function following(id) {
+        return follows.includes(id);
     }
 
     async function handleSubmit(e) {
@@ -75,10 +87,14 @@ function Comments({ postId, commentsOpen }) {
                             >
                                 {comment.userName}
                             </CommentUserName>
-                            {comment.commentUserId === comment.postUserId && (
+                            {comment.commentUserId === comment.postUserId ? (
                                 <AuthorRelation>
                                     {`• post’s author`}
                                 </AuthorRelation>
+                            ) : (
+                                following(comment.commentUserId) && (
+                                    <AuthorRelation>{`• following`}</AuthorRelation>
+                                )
                             )}
                         </AuthorData>
                         <CommentText>{comment.text}</CommentText>
