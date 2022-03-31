@@ -165,6 +165,13 @@ async function createComment(text, postId, token) {
     return promise;
 }
 
+async function updatePostsQuantity(lastPostId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/posts/update/${lastPostId}`, config);
+    return promise;
+}
+
 const api = {
 
   createUser,
@@ -187,6 +194,7 @@ const api = {
   isFollow,
   getComments,
   createComment,
+  updatePostsQuantity
 };
 
 export default api;

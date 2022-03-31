@@ -30,34 +30,22 @@ export default function Timeline() {
     const [description, setDescription] = useState('');
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     const [posts, setPosts] = useState([]);
-    // const [newPostsQuantity, setNewPostsQuantity] = useState(0)
-
-    // let totalPosts = 0;
-    // let newTotalPosts = 0;
-  
-    // const interval = setInterval(() => {
-    //   api.getPostsQuantity(auth?.token).then((res) => {
-    //     console.log(res.data.length);
-  
-  
-  
-    //     newTotalPosts = res.data.length;
-    //     setNewPostsQuantity(newTotalPosts - totalPosts);
-    //     totalPosts = newTotalPosts;
-  
-  
-  
-    //     console.log({ totalPosts });
-    //     console.log({ newTotalPosts });
-    //     console.log({ newPostsQuantity });
-    //   });
-    // }, 15000);
-
+    const [updatedPostsQuantity, setUpdatedPostsQuantity] = useState(0);
+    
     useEffect(() => {
-        api.listAllPosts(auth?.token)
+        let intervalId;
+
+            api.listAllPosts(0, auth?.token)
             .then((res) => {
                 setPosts(res.data);
                 setIsLoadingPosts(false);
+
+               intervalId = setInterval(() => {
+                    api.updatePostsQuantity(res.data[0].id, auth?.token).then(res => {
+                        setUpdatedPostsQuantity(res.data.length);                
+                    })            
+                }, 15000)
+                
             })
             .catch((err) => {
                 Swal.fire({
@@ -66,7 +54,7 @@ export default function Timeline() {
                     text: 'An error occured while trying to fetch the posts, please refresh the page.',
                 });
             });
-
+            return () => clearInterval(intervalId)
         //eslint-disable-next-line
     }, []);
 
@@ -93,7 +81,7 @@ export default function Timeline() {
                 });
                 setLoading(false);
             });
-    }
+    }    
 
     return (
         <TimelineContainer>
@@ -132,7 +120,7 @@ export default function Timeline() {
                         </Form>
                     </CreatePost>
 
-                    <NewPostsButton /*newPostsQuantity={newPostsQuantity} interval={interval}*/ />
+                    <NewPostsButton updatedPostsQuantity={updatedPostsQuantity} />
 
                     {isLoadingPosts ? (
                         <CenteredContainer>

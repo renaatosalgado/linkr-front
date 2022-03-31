@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { FaSyncAlt } from "react-icons/fa";
 
 const LoadButton = styled.button`
-background-color: #1877f2;
+  background-color: #1877f2;
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 
   width: 610px;
   height: 61px;
@@ -18,7 +18,7 @@ background-color: #1877f2;
   font-size: 16px;
   text-align: center;
 
-  display: flex;
+  display: ${(props) => (props.updatedPostsQuantity > 0 ? "flex" : "none")};
   align-items: center;
   justify-content: center;
 
@@ -36,12 +36,12 @@ background-color: #1877f2;
 `;
 
 const SyncIcon = styled(FaSyncAlt)`
-    color: #fff;
+  color: #fff;
 
-    height: 16px;
-    width: 22px;
+  height: 16px;
+  width: 22px;
 
-    margin-left: 16px;
-`
+  margin-left: 16px;
+`;
 
 export { LoadButton, SyncIcon };
