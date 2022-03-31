@@ -216,7 +216,7 @@ const FoundUsers = styled.div`
     display: ${(props) => (props.isSearching ? 'inherit' : 'none')};
 
     border-radius: 0 0 8px 8px;
-    padding: 8px 0 15px 0;
+    padding: ${(props) => (props.foundUser !== 0 ? '8px 0 15px 0' : '0')};
 
     @media (max-width: 835px) {
         width: 66vw;

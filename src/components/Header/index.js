@@ -97,7 +97,10 @@ function Header() {
                     <SearchIcon>
                         <AiOutlineSearch size="25px" />
                     </SearchIcon>
-                    <FoundUsers isSearching={isSearching}>
+                    <FoundUsers
+                        isSearching={isSearching}
+                        foundUser={foundUser.length}
+                    >
                         {foundUser.map((user) => (
                             <SingleUser key={user.id}>
                                 <Link to={`/user/${user.id}`}>
