@@ -131,6 +131,13 @@ async function deletePost(postId, token){
   return promise
 }
 
+async function getPostsQuantity(token) {
+  const config = createConfig(token);
+
+  const promise = await axios.get(`${BASE_URL}/posts/quantity`, config);
+  return promise;
+}
+
 const api = {
 
   createUser,
@@ -149,6 +156,7 @@ const api = {
   listTrending,
   deletePost,
   authToken,
+  getPostsQuantity
 };
 
 export default api;

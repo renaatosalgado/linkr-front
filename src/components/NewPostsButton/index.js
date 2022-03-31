@@ -1,30 +1,40 @@
 import React, { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
 import { LoadButton, SyncIcon } from "./style";
-import useAuth from "../../hooks/useAuth";
 
-export default function NewPostsButton({ newPostsQuantity }) {
+export default function NewPostsButton(/*{ newPostsQuantity, interval }*/) {
   const { auth } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [counter, setCounter] = useState(0);
+  let totalPosts = 0;
+  let newTotalPosts = 0;
+  let newPostsQuantity = 0;
 
-  function fetchNewPosts() {
-    setLoading(true);
+  function refreshPage() {
+    // clearInterval(interval);
 
-    api.listAllPosts(auth?.token).then((res) => {
-      setLoading(false);
-      console.log(res.data);
-    });
+    const interval = setInterval(() => {
+      api.getPostsQuantity(auth?.token).then((res) => {
+        console.log(res.data.length);
+
+        newTotalPosts = res.data.length;
+        console.log({ newTotalPosts });
+
+        newPostsQuantity = newTotalPosts - totalPosts;
+        console.log({ newPostsQuantity });
+
+        totalPosts = newTotalPosts;
+        console.log({ totalPosts });
+
+        setCounter(counter + newPostsQuantity)
+      });
+    }, 5000);
+    //window.location.reload();
   }
-  return (
-    <LoadButton
-      type={"button"}
-      onClick={fetchNewPosts}
-      disabled={loading ? true : false}
-    >
-      {loading
-        ? "Loading more posts..."
-        : `${newPostsQuantity} new posts, load more!`}
 
+  return (
+    <LoadButton type={"button"} onClick={refreshPage}>
+      {counter} new posts, load more!
       <SyncIcon />
     </LoadButton>
   );

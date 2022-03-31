@@ -27,11 +27,6 @@ background-color: #1877f2;
     filter: brightness(90%);
   }
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
   @media (max-width: 635px) {
     width: calc(100vw - 50px);
     margin-left: 25px;

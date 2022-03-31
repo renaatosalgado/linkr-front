@@ -30,6 +30,28 @@ export default function Timeline() {
     const [description, setDescription] = useState('');
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     const [posts, setPosts] = useState([]);
+    // const [newPostsQuantity, setNewPostsQuantity] = useState(0)
+
+    // let totalPosts = 0;
+    // let newTotalPosts = 0;
+  
+    // const interval = setInterval(() => {
+    //   api.getPostsQuantity(auth?.token).then((res) => {
+    //     console.log(res.data.length);
+  
+  
+  
+    //     newTotalPosts = res.data.length;
+    //     setNewPostsQuantity(newTotalPosts - totalPosts);
+    //     totalPosts = newTotalPosts;
+  
+  
+  
+    //     console.log({ totalPosts });
+    //     console.log({ newTotalPosts });
+    //     console.log({ newPostsQuantity });
+    //   });
+    // }, 15000);
 
     useEffect(() => {
         api.listAllPosts(auth?.token)
@@ -110,7 +132,7 @@ export default function Timeline() {
                         </Form>
                     </CreatePost>
 
-                    <NewPostsButton newPostsQuantity={10}/>
+                    <NewPostsButton /*newPostsQuantity={newPostsQuantity} interval={interval}*/ />
 
                     {isLoadingPosts ? (
                         <CenteredContainer>
