@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { FiTrash } from "react-icons/fi";
-import { TiPencil } from "react-icons/ti";
-import { TiArrowRepeat } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { FiTrash } from 'react-icons/fi';
+import { TiPencil } from 'react-icons/ti';
+import { TiArrowRepeat } from 'react-icons/ti';
+import { Link } from 'react-router-dom';
 
 const PostBox = styled.div`
     background-color: #1e1e1e;
@@ -139,7 +139,7 @@ const CommentsIcon = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 15px;
+    margin: 10px auto 5px auto;
     row-gap: 4px;
 `;
 
@@ -152,7 +152,6 @@ const Icon = styled.div`
 
 const Count = styled.p`
     width: 67px;
-    height: 13px;
     font-family: 'Lato';
     font-weight: 400;
     font-size: 11px;
@@ -163,21 +162,21 @@ const Count = styled.p`
 `;
 
 const RepostIcon = styled(TiArrowRepeat)`
-  font-size: 28px;
-  color: #fff;
-  cursor: pointer;
-`
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+`;
 
 const LeftIcons = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  align-items: center;
-  span{
-    font-size: 11px;
-    color: #fff;
-  }
-`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    span {
+        font-size: 11px;
+        color: #fff;
+    }
+`;
 
 export {
     PostBox,
@@ -197,5 +196,5 @@ export {
     Icon,
     Count,
     RepostIcon,
-    LeftIcons
+    LeftIcons,
 };
