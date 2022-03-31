@@ -133,6 +133,34 @@ const EditInput = styled.input`
     margin-bottom: 8px;
 `;
 
+const CommentsIcon = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    row-gap: 4px;
+`;
+
+const Icon = styled.div`
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+`;
+
+const Count = styled.p`
+    width: 67px;
+    height: 13px;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+`;
+
 export {
     PostBox,
     PostContainer,
@@ -147,4 +175,7 @@ export {
     EditIcon,
     DeleteIcon,
     EditInput,
+    CommentsIcon,
+    Icon,
+    Count,
 };
