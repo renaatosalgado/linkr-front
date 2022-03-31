@@ -48,12 +48,13 @@ const Title = styled.div`
 `;
 
 const CreatePost = styled.div`
-    width: 611px;
+    width: 610px;
     height: 209px;
     background-color: #ffffff;
     border-radius: 16px;
     display: flex;
     justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     @media (max-width: 635px) {
         width: 100%;

@@ -21,6 +21,7 @@ import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
 import Post from "../../components/Post";
 import Trending from "../../components/Trending";
+import NewPostsButton from '../../components/NewPostsButton';
 
 export default function Timeline() {
     const { auth } = useAuth();
@@ -29,12 +30,22 @@ export default function Timeline() {
     const [description, setDescription] = useState('');
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     const [posts, setPosts] = useState([]);
-
+    const [updatedPostsQuantity, setUpdatedPostsQuantity] = useState(0);
+    
     useEffect(() => {
-        api.listAllPosts(auth?.token)
+        let intervalId;
+
+            api.listAllPosts(0, auth?.token)
             .then((res) => {
                 setPosts(res.data);
                 setIsLoadingPosts(false);
+
+               intervalId = setInterval(() => {
+                    api.updatePostsQuantity(res.data[0].id, auth?.token).then(res => {
+                        setUpdatedPostsQuantity(res.data.length);                
+                    })            
+                }, 15000)
+                
             })
             .catch((err) => {
                 Swal.fire({
@@ -43,7 +54,7 @@ export default function Timeline() {
                     text: 'An error occured while trying to fetch the posts, please refresh the page.',
                 });
             });
-
+            return () => clearInterval(intervalId)
         //eslint-disable-next-line
     }, []);
 
@@ -70,7 +81,7 @@ export default function Timeline() {
                 });
                 setLoading(false);
             });
-    }
+    }    
 
     return (
         <TimelineContainer>
@@ -108,6 +119,9 @@ export default function Timeline() {
                             </Buttons>
                         </Form>
                     </CreatePost>
+
+                    <NewPostsButton updatedPostsQuantity={updatedPostsQuantity} />
+
                     {isLoadingPosts ? (
                         <CenteredContainer>
                             <ThreeDots
