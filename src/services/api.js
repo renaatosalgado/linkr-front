@@ -28,7 +28,7 @@ async function createPost(body, token) {
     return promise;
 }
 
-async function listAllPosts(token) {
+async function listAllPosts(_, token) {
     const config = createConfig(token);
 
     const promise = await axios.get(`${BASE_URL}/posts`, config);
@@ -130,6 +130,13 @@ async function deletePost(postId, token) {
 
     const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config);
     return promise;
+}
+
+async function rePost(postId, token){
+  const config = createConfig(token);
+
+  const promise = await axios.post(`${BASE_URL}/posts/${postId}/repost`,null, config)
+  return promise
 }
 
 async function followUser(followId, token) {

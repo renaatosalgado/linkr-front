@@ -14,6 +14,8 @@ import {
     EditIcon,
     DeleteIcon,
     EditInput,
+    RepostIcon,
+    LeftIcons,
     CommentsIcon,
     Icon,
     Count,
@@ -23,6 +25,7 @@ import LikeHeart from '../LikeHeart';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import DeleteModal from '../DeleteModal';
+import RepostModal from '../RepostModal';
 import Comments from '../Comments/index';
 import { IconContext } from 'react-icons';
 import { AiOutlineComment } from 'react-icons/ai';
@@ -37,6 +40,7 @@ export default function Post({
     author,
     profilePicture,
     userId,
+    repost
 }) {
     const [like, setLike] = useState(false);
     const { auth } = useAuth();
@@ -46,7 +50,8 @@ export default function Post({
     const [postText, setPostText] = useState(textDescription);
     const [description, setDescription] = useState(postText);
     const [loading, setLoading] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openRepostModal, setOpenRepostModal] = useState(false);
     const [comments, setComments] = useState([]);
     const [areCommentsOpen, setAreCommentsOpen] = useState(false);
 
@@ -100,16 +105,24 @@ export default function Post({
 
     return (
         <PostBox key={postId}>
-            {openModal && (
+            {openDeleteModal && (
                 <DeleteModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
+                    openDeleteModal={openDeleteModal}
+                    setOpenDeleteModal={setOpenDeleteModal}
+                    postId={postId}
+                />
+            )}
+            {openRepostModal && (
+                <RepostModal
+                    openRepostModal={openRepostModal}
+                    setOpenRepostModal={setOpenRepostModal}
                     postId={postId}
                 />
             )}
             <PostContainer>
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
+                    <LeftIcons>
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
                     <CommentsIcon>
                         <Icon>
@@ -130,6 +143,9 @@ export default function Post({
                             comments?.length === 1 ? '' : 's'
                         }`}</Count>
                     </CommentsIcon>
+                    <RepostIcon onClick={() => setOpenRepostModal(true)}/>
+                        <span>{repost} re-posts</span>
+                    </LeftIcons>
                 </LeftContainer>
                 <RightContainer>
                     <TopContainer>
@@ -139,7 +155,7 @@ export default function Post({
                                 <EditIcon size="20" onClick={handleEditPost} />
                                 <DeleteIcon
                                     size="20"
-                                    onClick={() => setOpenModal(true)}
+                                    onClick={() => setOpenDeleteModal(true)}
                                 />
                             </IconBox>
                         )}

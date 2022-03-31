@@ -1,7 +1,7 @@
 import Modal from 'react-modal'
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
-import { CancelButton, ConfirmButton, ModalText, ButtonBox } from './style';
+import { CancelButton, ConfirmButton, ModalText, ButtonBox } from '../DeleteModal/style';
 import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react'
 
@@ -26,37 +26,37 @@ const customStyles = {
 };
 
 Modal.setAppElement('.root');
-export default function DeleteModal({openDeleteModal, setOpenDeleteModal, postId }){
+export default function RepostModal({openRepostModal, setOpenRepostModal, postId }){
   const { auth } = useAuth();
   const [loading, setLoading] = useState(false)
 
-  async function deletePost(){
+  async function handleRepost(){
     setLoading(true)
     try {
-      await api.deletePost(postId, auth?.token) 
+      await api.rePost(postId, auth?.token) 
       setLoading(false)
-      setOpenDeleteModal(false)
+      setOpenRepostModal(false)
       window.location.reload()
     } catch (error) {
       console.log(error)
       setLoading(false)
-      setOpenDeleteModal(false)
-      alert("It wasn't possible to delete post.")
+      setOpenRepostModal(false)
+      alert("It wasn't possible to repost the post.")
     }
   }
 
 
   return (
     <Modal 
-    isOpen={openDeleteModal}
-    onRequestClose={() => {if(!loading)setOpenDeleteModal(false)}}
+    isOpen={openRepostModal}
+    onRequestClose={() => {if(!loading)setOpenRepostModal(false)}}
     style={customStyles}>
     {loading ? <RotatingLines width='200' /> : 
       <>
-        <ModalText>Are you sure you want <br/> to delete this post?</ModalText>
+        <ModalText>Do you want to re-post <br/> this link?</ModalText>
         <ButtonBox>
-          <CancelButton onClick={() => setOpenDeleteModal(false)} >No, go back</CancelButton>
-          <ConfirmButton onClick={deletePost}>Yes, delete it</ConfirmButton>
+          <CancelButton onClick={() => setOpenRepostModal(false)} >No, cancel</CancelButton>
+          <ConfirmButton onClick={handleRepost}>Yes, share!</ConfirmButton>
         </ButtonBox>
       </>}
     </Modal>
