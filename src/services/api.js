@@ -125,11 +125,23 @@ async function authToken(token) {
     return promise;
 }
 
-async function deletePost(postId, token) {
-    const config = createConfig(token);
+async function deletePost(postId, token){
+  const config = createConfig(token);
+  
+  const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
+  return promise
+}
 
-    const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config);
-    return promise;
+async function followUser(followId, token){
+  const config = createConfig(token);
+  const promise = await axios.post(`${BASE_URL}/${followId}/follow`,{}, config)
+  return promise
+}
+
+async function isFollow(followId, token){
+  const config = createConfig(token);
+  const promise = await axios.get(`${BASE_URL}/is-follow/${followId}`, config)
+  return promise
 }
 
 async function getComments(postId, token) {
@@ -154,23 +166,26 @@ async function createComment(text, postId, token) {
 }
 
 const api = {
-    createUser,
-    login,
-    createPost,
-    listAllPosts,
-    logout,
-    toggleLike,
-    totalLikes,
-    checkLikeUser,
-    searchUser,
-    hashtagPost,
-    editPost,
-    listUserPosts,
-    getTwoNames,
-    listTrending,
-    deletePost,
-    authToken,
-    getComments,
+
+  createUser,
+  login,
+  createPost,
+  listAllPosts,
+  logout,
+  toggleLike,
+  totalLikes,
+  checkLikeUser,
+  searchUser,
+  hashtagPost,
+  editPost,
+  listUserPosts,
+  getTwoNames,
+  listTrending,
+  deletePost,
+  authToken,
+  followUser,
+  isFollow,
+  getComments,
     createComment,
 };
 
