@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import api from "../../services/api";
+import React from "react";
 import { LoadButton, SyncIcon } from "./style";
 
 export default function NewPostsButton({ updatedPostsQuantity }) {
