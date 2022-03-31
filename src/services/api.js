@@ -125,23 +125,30 @@ async function authToken(token) {
     return promise;
 }
 
-async function deletePost(postId, token){
-  const config = createConfig(token);
-  
-  const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
-  return promise
+async function deletePost(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config);
+    return promise;
 }
 
-async function followUser(followId, token){
-  const config = createConfig(token);
-  const promise = await axios.post(`${BASE_URL}/${followId}/follow`,{}, config)
-  return promise
+async function followUser(followId, token) {
+    const config = createConfig(token);
+    const promise = await axios.post(
+        `${BASE_URL}/${followId}/follow`,
+        {},
+        config
+    );
+    return promise;
 }
 
-async function isFollow(followId, token){
-  const config = createConfig(token);
-  const promise = await axios.get(`${BASE_URL}/is-follow/${followId}`, config)
-  return promise
+async function isFollow(followId, token) {
+    const config = createConfig(token);
+    const promise = await axios.get(
+        `${BASE_URL}/is-follow/${followId}`,
+        config
+    );
+    return promise;
 }
 
 async function getComments(postId, token) {
@@ -168,33 +175,43 @@ async function createComment(text, postId, token) {
 async function updatePostsQuantity(lastPostId, token) {
     const config = createConfig(token);
 
-    const promise = await axios.get(`${BASE_URL}/posts/update/${lastPostId}`, config);
+    const promise = await axios.get(
+        `${BASE_URL}/posts/update/${lastPostId}`,
+        config
+    );
+    return promise;
+}
+
+async function getFollows(token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/follows`, config);
     return promise;
 }
 
 const api = {
-
-  createUser,
-  login,
-  createPost,
-  listAllPosts,
-  logout,
-  toggleLike,
-  totalLikes,
-  checkLikeUser,
-  searchUser,
-  hashtagPost,
-  editPost,
-  listUserPosts,
-  getTwoNames,
-  listTrending,
-  deletePost,
-  authToken,
-  followUser,
-  isFollow,
-  getComments,
-  createComment,
-  updatePostsQuantity
+    createUser,
+    login,
+    createPost,
+    listAllPosts,
+    logout,
+    toggleLike,
+    totalLikes,
+    checkLikeUser,
+    searchUser,
+    hashtagPost,
+    editPost,
+    listUserPosts,
+    getTwoNames,
+    listTrending,
+    deletePost,
+    authToken,
+    followUser,
+    isFollow,
+    getComments,
+    createComment,
+    updatePostsQuantity,
+    getFollows,
 };
 
 export default api;
