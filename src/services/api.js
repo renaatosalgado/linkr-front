@@ -28,7 +28,7 @@ async function createPost(body, token) {
     return promise;
 }
 
-async function listAllPosts(token) {
+async function listAllPosts(_, token) {
     const config = createConfig(token);
 
     const promise = await axios.get(`${BASE_URL}/posts`, config);

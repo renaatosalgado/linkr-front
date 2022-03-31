@@ -41,7 +41,7 @@ export default function Timeline() {
                 setIsLoadingPosts(false);
 
                intervalId = setInterval(() => {
-                    api.updatePostsQuantity(res.data[0].id, auth?.token).then(res => {
+                    api.updatePostsQuantity(res.data[0].datetime, auth?.token).then(res => {
                         setUpdatedPostsQuantity(res.data.length);                
                     })            
                 }, 15000)
