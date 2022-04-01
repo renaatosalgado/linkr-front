@@ -52,7 +52,7 @@ export default function RepostModal({openRepostModal, setOpenRepostModal, postId
       Swal.fire({
         icon: 'error',
         title: 'Cannot Repost',
-        text: error.response.data,
+        text: "Something went wrong, please try again",
     });}
     }
   }
