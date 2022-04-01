@@ -4,6 +4,7 @@ import api from '../../services/api';
 import { CancelButton, ConfirmButton, ModalText, ButtonBox } from '../DeleteModal/style';
 import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react'
+import Swal from 'sweetalert2';
 
 const customStyles = {
   overlay: {zIndex: 1000},
@@ -39,9 +40,20 @@ export default function RepostModal({openRepostModal, setOpenRepostModal, postId
       window.location.reload()
     } catch (error) {
       console.log(error)
+      if(error.response.status === 409){
+        Swal.fire({
+          icon: 'error',
+          title: 'Cannot Repost',
+          text: error.response.data,
+      });
+      }else{
       setLoading(false)
       setOpenRepostModal(false)
-      alert("It wasn't possible to repost the post.")
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot Repost',
+        text: error.response.data,
+    });}
     }
   }
 

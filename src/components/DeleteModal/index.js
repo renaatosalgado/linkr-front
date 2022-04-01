@@ -4,6 +4,7 @@ import api from '../../services/api';
 import { CancelButton, ConfirmButton, ModalText, ButtonBox } from './style';
 import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react'
+import Swal from 'sweetalert2';
 
 const customStyles = {
   overlay: {zIndex: 1000},
@@ -41,7 +42,11 @@ export default function DeleteModal({openDeleteModal, setOpenDeleteModal, postId
       console.log(error)
       setLoading(false)
       setOpenDeleteModal(false)
-      alert("It wasn't possible to delete post.")
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot Delete post',
+        text: "Somtething went wrong, please try again.",
+    });
     }
   }
 

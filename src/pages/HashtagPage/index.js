@@ -63,6 +63,7 @@ export default function Timeline() {
                                 author={post.author}
                                 profilePicture={post.profilePicture}
                                 userId={post.userId}
+                                repost={post.repostCount}
                             />
                         ))
                     )}

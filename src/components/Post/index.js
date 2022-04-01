@@ -19,6 +19,7 @@ import {
     CommentsIcon,
     Icon,
     Count,
+    TopBar
 } from './style';
 import LinkPreview from '../LinkPreview';
 import LikeHeart from '../LikeHeart';
@@ -29,6 +30,7 @@ import RepostModal from '../RepostModal';
 import Comments from '../Comments/index';
 import { IconContext } from 'react-icons';
 import { AiOutlineComment } from 'react-icons/ai';
+import Swal from 'sweetalert2';
 
 export default function Post({
     url,
@@ -41,6 +43,7 @@ export default function Post({
     profilePicture,
     userId,
     repost,
+    repostedBy
 }) {
     const [like, setLike] = useState(false);
     const { auth } = useAuth();
@@ -97,7 +100,12 @@ export default function Post({
                 setEdit(!edit);
                 setEditFocus(!editFocus);
             } catch (error) {
-                alert('Something went wrong, please try again');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot Edit post',
+                    text: "Somtething went wrong, please try again.",
+                });
+                
                 setLoading(false);
             }
         }
@@ -119,7 +127,13 @@ export default function Post({
                     postId={postId}
                 />
             )}
-            <PostContainer>
+            {repostedBy && (
+                    <TopBar>
+                        <RepostIcon/>
+                            <span>Re-posted by {repostedBy === auth.user.name ? "you" : repostedBy}</span>
+                    </TopBar>) }
+            <PostContainer isReposted={repostedBy}>
+                    
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
