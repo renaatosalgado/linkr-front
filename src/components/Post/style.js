@@ -98,6 +98,7 @@ const TextDescription = styled.div`
     margin-bottom: 8px;
     padding-top: 4px;
     padding-bottom: 4px;
+    word-break: break-all;
 `;
 
 const Hashtag = styled(Link)`
@@ -127,13 +128,14 @@ const DeleteIcon = styled(FiTrash)`
     cursor: pointer;
 `;
 
-const EditInput = styled.input`
+const EditInput = styled.textarea`
     all: unset;
     border-radius: 7px;
     background-color: #fff;
     padding: 5px;
     margin-bottom: 8px;
     font-size: 20px;
+    word-break: break-all;
 `;
 
 const CommentsIcon = styled.div`
