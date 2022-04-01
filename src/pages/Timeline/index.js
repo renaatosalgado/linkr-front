@@ -133,9 +133,9 @@ export default function Timeline() {
                     ) : posts.length === 0 ? (
                         <NoPostFound>There are nos posts yet</NoPostFound>
                     ) : (
-                        posts.map((post) => (
+                        posts.map((post, i) => (
                             <Post
-                                key={post.id}
+                                key={i}
                                 postId={post.id}
                                 url={post.url}
                                 linkTitle={post.urlTitle}
@@ -146,6 +146,7 @@ export default function Timeline() {
                                 profilePicture={post.profilePicture}
                                 userId={post.userId}
                                 repost={post.repostCount}
+                                repostedBy={post.repostedBy}
                             />
                         ))
                     )}

@@ -219,6 +219,7 @@ const api = {
     createComment,
     updatePostsQuantity,
     getFollows,
+    rePost
 };
 
 export default api;

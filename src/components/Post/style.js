@@ -128,10 +128,12 @@ const DeleteIcon = styled(FiTrash)`
 `;
 
 const EditInput = styled.input`
+    all: unset;
     border-radius: 7px;
     background-color: #fff;
     padding: 5px;
     margin-bottom: 8px;
+    font-size: 20px;
 `;
 
 const CommentsIcon = styled.div`
@@ -179,6 +181,24 @@ const LeftIcons = styled.div`
   }
 `
 
+const TopBar = styled.div`
+height: 33px;
+background-color: #1E1E1E;
+margin-top: 16px;
+border-top: 1px solid #333;
+border-radius: 16px;
+font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 13px;
+color: #fff;
+padding-left: 13px;
+display: flex;
+align-items: center;
+gap: 5px;
+`
+
 export {
     PostBox,
     PostContainer,
@@ -197,5 +217,6 @@ export {
     Icon,
     Count,
     RepostIcon,
-    LeftIcons
+    LeftIcons,
+    TopBar
 };
