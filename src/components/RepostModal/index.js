@@ -56,13 +56,13 @@ export default function RepostModal({
           text: error.response.data,
       });
       }else{
-      setLoading(false)
-      setOpenRepostModal(false)
       Swal.fire({
         icon: 'error',
         title: 'Cannot Repost',
         text: "Something went wrong, please try again",
     });}
+      setLoading(false)
+      setOpenRepostModal(false)
     }}
 
     return (
