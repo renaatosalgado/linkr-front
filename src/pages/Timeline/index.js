@@ -46,14 +46,12 @@ export default function Timeline() {
         setPosts(...posts, res.data);
         setHasMorePosts(true);
         setIsLoadingPosts(false);
-        console.log("renderizei", res.data);
 
         intervalId = setInterval(() => {
           api
-            .updatePostsQuantity(res.data[0].datetime, auth?.token)
+            .updatePostsQuantity(res.data[0]?.datetime, auth?.token)
             .then((res) => {
               setUpdatedPostsQuantity(res.data.length);
-              console.log({ interval: res.data });
             });
         }, 15000);
       })
@@ -95,14 +93,12 @@ export default function Timeline() {
   }
 
   function loadMorePosts() {
-    console.log("estoua qui");
     if(pageNumber === 0) return setPageNumber(pageNumber + 1);
 
     api.listAllPosts(0, pageNumber, auth?.token).then((res) => {
       if (res.data.length > 0) setPageNumber(pageNumber + 1);
       if (res.data.length === 0) setHasMorePosts(false);
       setPosts(posts.concat(res.data));
-      console.log("load more posts", res.data);
     });
   }
 
