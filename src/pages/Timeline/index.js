@@ -13,7 +13,6 @@ import {
   Buttons,
   Publish,
   CenteredContainer,
-  NoPostFound,
 } from "./style";
 import { ThreeDots } from "react-loader-spinner";
 import Swal from "sweetalert2";
@@ -22,6 +21,7 @@ import useAuth from "../../hooks/useAuth";
 import Post from "../../components/Post";
 import Trending from "../../components/Trending";
 import NewPostsButton from '../../components/NewPostsButton';
+import { NoPostFound } from '../../components/NoPostFound';
 
 export default function Timeline() {
     const { auth } = useAuth();
@@ -131,7 +131,7 @@ export default function Timeline() {
                             />
                         </CenteredContainer>
                     ) : posts.length === 0 ? (
-                        <NoPostFound>There are nos posts yet</NoPostFound>
+                        <NoPostFound />
                     ) : (
                         posts.map((post, i) => (
                             <Post

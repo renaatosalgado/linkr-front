@@ -136,7 +136,6 @@ export default function Post({
                     
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
-                    <LeftIcons>
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
                     <CommentsIcon>
                         <Icon>
@@ -157,7 +156,8 @@ export default function Post({
                             comments?.length === 1 ? '' : 's'
                         }`}</Count>
                     </CommentsIcon>
-                    <RepostIcon onClick={() => setOpenRepostModal(true)}/>
+                    <LeftIcons>
+                        <RepostIcon onClick={() => setOpenRepostModal(true)} />
                         <span>{repost} re-posts</span>
                     </LeftIcons>
                 </LeftContainer>

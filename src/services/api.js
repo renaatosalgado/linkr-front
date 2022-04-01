@@ -132,11 +132,15 @@ async function deletePost(postId, token) {
     return promise;
 }
 
-async function rePost(postId, token){
-  const config = createConfig(token);
+async function rePost(postId, token) {
+    const config = createConfig(token);
 
-  const promise = await axios.post(`${BASE_URL}/posts/${postId}/repost`,null, config)
-  return promise
+    const promise = await axios.post(
+        `${BASE_URL}/posts/${postId}/repost`,
+        null,
+        config
+    );
+    return promise;
 }
 
 async function followUser(followId, token) {
@@ -196,6 +200,13 @@ async function getFollows(token) {
     return promise;
 }
 
+async function isFollowUser(token, userId) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/is-follow-user/${userId}`, config);
+    return promise;
+}
+
 const api = {
     createUser,
     login,
@@ -219,7 +230,8 @@ const api = {
     createComment,
     updatePostsQuantity,
     getFollows,
-    rePost
+    rePost,
+    isFollowUser,
 };
 
 export default api;
