@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   TimelineContainer,
   TimelineBox,
@@ -13,8 +13,9 @@ import {
   Buttons,
   Publish,
   CenteredContainer,
+  InfiniteLoader
 } from "./style";
-import { ThreeDots } from "react-loader-spinner";
+import { ThreeDots, TailSpin } from "react-loader-spinner";
 import Swal from "sweetalert2";
 import api from "../../services/api";
 import useAuth from "../../hooks/useAuth";
@@ -31,19 +32,23 @@ export default function Timeline() {
     const [isLoadingPosts, setIsLoadingPosts] = useState(true);
     const [posts, setPosts] = useState([]);
     const [updatedPostsQuantity, setUpdatedPostsQuantity] = useState(0);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [hasMorePosts, setHasMorePosts] = useState(false);
+    const loaderRef = useRef(null);
     
     useEffect(() => {
         let intervalId;
 
-            api.listAllPosts(0, auth?.token)
+            api.listAllPosts(0, pageNumber, auth?.token)
             .then((res) => {
-                setPosts(res.data);
+                setPosts(...posts, res.data);
+                setHasMorePosts(res.data.length > 0)
                 setIsLoadingPosts(false);
 
                intervalId = setInterval(() => {
                     api.updatePostsQuantity(res.data[0].datetime, auth?.token).then(res => {
                         setUpdatedPostsQuantity(res.data.length);                
-                    })            
+                    })           
                 }, 15000)
                 
             })
@@ -57,6 +62,29 @@ export default function Timeline() {
             return () => clearInterval(intervalId)
         //eslint-disable-next-line
     }, []);
+
+    // useEffect(() => {
+    //     const options = {
+    //       root: null,
+    //       rootMargin: "20px",
+    //       threshold: 1.0
+    //     };
+    
+    //     const observer = new IntersectionObserver((entities) => {
+    //       const target = entities[0];
+    
+    //       if (target.isIntersecting){
+    //         setPageNumber(pageNumber + 1);
+    //       }
+    //     }, options);
+    
+    //     if (loaderRef.current){
+    //       observer.observe(loaderRef.current);
+    //     }
+    //     return () => {
+    //         observer.disconnect()
+    //     }
+    //   }, []);
 
     function publishPost(event) {
         event.preventDefault();
@@ -150,6 +178,18 @@ export default function Timeline() {
                             />
                         ))
                     )}
+                   
+                                        <InfiniteLoader ref={loaderRef}>
+                                             <TailSpin
+                                                 color="#6D6D6D"
+                                                 height={36}
+                                                 width={36}
+                                             />
+                                             <p>Loading more posts...</p>
+                                         </InfiniteLoader>
+                              
+            
+                    
                 </TimelineBody>
               <Trending />
             </TimelineBox>
