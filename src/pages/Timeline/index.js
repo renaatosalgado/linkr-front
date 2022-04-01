@@ -174,6 +174,7 @@ export default function Timeline() {
                   userId={post.userId}
                   repost={post.repostCount}
                   repostedBy={post.repostedBy}
+                  repostedByUserId={post.repostedByUserId}
                 />
               ))
             )}

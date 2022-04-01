@@ -103,7 +103,6 @@ const SearchContainer = styled.div`
     top: 16px;
 
     width: 560px;
-    // height: 45px;
 
     font-family: 'Lato';
     font-size: 19px;
@@ -143,8 +142,6 @@ const SearchContainer = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
-        //width: calc((100vw - 20px));
     }
 `;
 
@@ -154,7 +151,6 @@ const SearchInput = styled.input`
     width: 560px;
     height: 45px;
 
-    //border-radius: 8px;
     padding-left: 17px;
     z-index: 3;
 
@@ -208,10 +204,7 @@ const SearchIcon = styled.div`
 const FoundUsers = styled.div`
     width: 560px;
     background-color: #e7e7e7;
-    //border-radius: 8px;
-    // position: absolute;
-    // top: 45px;
-    // right: 0;
+
     z-index: 1;
     display: ${(props) => (props.isSearching ? 'inherit' : 'none')};
 
@@ -229,8 +222,6 @@ const FoundUsers = styled.div`
     }
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
-        // right: 15px;
-        // top: 55px;
 
         flex-direction: column;
     }
