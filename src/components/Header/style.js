@@ -29,7 +29,6 @@ const Logo = styled(Link)`
     &:hover {
         cursor: pointer;
     }
-
     @media (max-width: 635px) {
         position: fixed;
         top: 13px;
@@ -61,7 +60,6 @@ const Arrow = styled.div`
     position: fixed;
     top: 20px;
     right: 85px;
-
     @media (max-width: 635px) {
         position: fixed;
         top: 20px;
@@ -101,20 +99,16 @@ const SearchContainer = styled.div`
     position: fixed;
     left: calc((100vw - 560px) / 2);
     top: 16px;
-
     width: 560px;
-
     font-family: 'Lato';
     font-size: 19px;
     line-height: 22.8px;
     border-radius: 8px;
-
     ${(props) => {
         if (props.foundUser.length > 0 && props.searchName.length > 2) {
             return `background-color: #e7e7e7;`;
         }
     }};
-
     @media (max-width: 835px) {
         width: 66vw;
         left: 17vw;
@@ -130,14 +124,11 @@ const SearchContainer = styled.div`
         left: 21vw;
         top: 16px;
     }
-
     @media (max-width: 635px) {
         position: fixed;
         top: 82px;
         left: 10px;
-
         width: calc((100vw - 30px));
-
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -147,21 +138,16 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
     background-color: #ffffff;
-
     width: 560px;
     height: 45px;
-
     padding-left: 17px;
     z-index: 3;
-
     border-radius: 8px;
-
     &::placeholder {
         font-size: 19px;
         line-height: 22.8px;
         color: #c6c6c6;
     }
-
     &:focus {
         outline: none;
     }
@@ -190,12 +176,10 @@ const SearchIcon = styled.div`
     position: absolute;
     top: 11px;
     right: 15px;
-
     &:hover {
         cursor: pointer;
         color: #1877f2;
     }
-
     @media (max-width: 635px) {
         z-index: 4;
     }
@@ -204,13 +188,10 @@ const SearchIcon = styled.div`
 const FoundUsers = styled.div`
     width: 560px;
     background-color: #e7e7e7;
-
     z-index: 1;
     display: ${(props) => (props.isSearching ? 'inherit' : 'none')};
-
     border-radius: 0 0 8px 8px;
     padding: ${(props) => (props.foundUser !== 0 ? '8px 0 15px 0' : '0')};
-
     @media (max-width: 835px) {
         width: 66vw;
     }
@@ -222,7 +203,6 @@ const FoundUsers = styled.div`
     }
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
-
         flex-direction: column;
     }
 `;
@@ -238,10 +218,8 @@ const SingleUser = styled.div`
         font-family: 'Lato';
         margin-left: 30px;
         word-break: break-word;
-
         cursor: pointer;
     }
-
     span {
         color: #c5c5c5;
         font-size: 19px;
@@ -254,9 +232,7 @@ const SingleUserAvatar = styled.div`
     height: 39px;
     margin-bottom: 5px;
     margin-left: 10px;
-
     cursor: pointer;
-
     img {
         width: 39px;
         height: 39px;

@@ -7,7 +7,6 @@ const TimelineContainer = styled.div`
     padding-top: 150px;
     display: flex;
     justify-content: center;
-
     @media (max-width: 635px) {
         padding-top: 20px;
     }
@@ -17,7 +16,6 @@ const TimelineBox = styled.div`
     display: flex;
     padding-bottom: 30px;
     margin: 0 auto;
-
     @media (max-width: 635px) {
         width: 100%;
     }
@@ -26,7 +24,6 @@ const TimelineBox = styled.div`
 const TimelineBody = styled.div`
     width: 611px;
     margin: 0 auto;
-
     @media (max-width: 635px) {
         width: 100%;
     }
@@ -38,7 +35,6 @@ const Title = styled.div`
     font-size: 43px;
     color: #ffffff;
     margin-bottom: 50px;
-
     @media (max-width: 635px) {
         font-size: 33px;
         margin-top: 120px;
@@ -55,7 +51,6 @@ const CreatePost = styled.div`
     display: flex;
     justify-content: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
     @media (max-width: 635px) {
         width: 100%;
         height: 164px;
@@ -67,7 +62,6 @@ const CreatePostImg = styled.div`
     display: flex;
     align-items: flex-start;
     margin-top: 16px;
-
     @media (max-width: 635px) {
         display: none;
     }
@@ -87,7 +81,6 @@ const Form = styled.form`
     flex-direction: column;
     font-weight: 300;
     margin-top: 16px;
-
     p {
         color: #707070;
         font-size: 20px;
@@ -95,15 +88,12 @@ const Form = styled.form`
         line-height: 24px;
         margin-bottom: 10px;
     }
-
     &:disabled {
         opacity: 0.5;
     }
-
     @media (max-width: 635px) {
         width: calc(100% - 30px);
         margin-top: 10px;
-
         p {
             text-align: center;
             font-size: 17px;
@@ -120,16 +110,13 @@ const Url = styled.input`
     margin-bottom: 5px;
     line-height: 18px;
     padding-left: 12px;
-
     &::placeholder {
         color: #949494;
         font-size: 15px;
     }
-
     &:focus {
         outline: none;
     }
-
     &:disabled {
         opacity: 0.5;
     }
@@ -146,17 +133,14 @@ const Description = styled.textarea`
     resize: none;
     outline: none;
     border: none;
-
     &::placeholder {
         color: #949494;
         font-size: 15px;
         font-weight: 300;
     }
-
     &:disabled {
         opacity: 0.5;
     }
-
     @media (max-width: 635px) {
         height: 47px;
     }
@@ -176,17 +160,14 @@ const Publish = styled.button`
     font-weight: bold;
     border-radius: 5px;
     text-align: center;
-
     &:hover {
         cursor: pointer;
         filter: brightness(90%);
     }
-
     &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
-
     @media (max-width: 635px) {
         height: 22px;
     }
@@ -198,7 +179,6 @@ const CenteredContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     @media (max-width: 635px) {
         min-width: 100%;
     }
@@ -210,18 +190,14 @@ const InfiniteLoader = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin-top: 16px;
-
     p {
         color: #6D6D6D;
         font-size: 22px;
         line-height: 26.4px;
         letter-spacing: 5%;
-
         margin-top: 16px;
     }
-
     @media (max-width: 635px) {
         min-width: 100%;
     }

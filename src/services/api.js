@@ -64,6 +64,7 @@ async function toggleLike(body, token) {
     return promise;
 }
 
+
 async function totalLikes(postId, token) {
     const config = createConfig(token);
 
@@ -106,6 +107,8 @@ async function getTwoNames(postId, token) {
     );
     return promise;
 }
+
+
 
 async function editPost(postId, body, token) {
     const config = createConfig(token);
@@ -206,14 +209,6 @@ async function isFollowUser(token, userId) {
     const promise = await axios.get(`${BASE_URL}/is-follow-user/${userId}`, config);
     return promise;
 }
-
-// async function loadMorePosts(pageNumber, token) {
-//     const config = createConfig(token);
-
-//     const promise = await axios.get(`${BASE_URL}/posts?page=${pageNumber}`);
-
-//     return promise;
-// }
 
 const api = {
     createUser,
