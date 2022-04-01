@@ -200,6 +200,10 @@ align-items: center;
 gap: 5px;
 `
 
+const Repost = styled(Link)`
+cursor: pointer;
+`
+
 export {
     PostBox,
     PostContainer,
@@ -219,5 +223,6 @@ export {
     Count,
     RepostIcon,
     LeftIcons,
-    TopBar
+    TopBar,
+    Repost
 };
