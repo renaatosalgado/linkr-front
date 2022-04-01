@@ -200,6 +200,13 @@ async function getFollows(token) {
     return promise;
 }
 
+async function isFollowUser(token, userId) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/is-follow-user/${userId}`, config);
+    return promise;
+}
+
 const api = {
     createUser,
     login,
@@ -224,6 +231,7 @@ const api = {
     updatePostsQuantity,
     getFollows,
     rePost,
+    isFollowUser,
 };
 
 export default api;
