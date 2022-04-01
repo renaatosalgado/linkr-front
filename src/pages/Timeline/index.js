@@ -141,11 +141,11 @@ export default function Timeline() {
           <InfiniteScroll
             loadMore={() => loadMorePosts()}
             hasMore={hasMorePosts}
-            loader={
+            loader={posts.length !== 0 ?
               <InfiniteLoader>
                 <TailSpin color="#6D6D6D" height={36} width={36} />
                 <p>Loading more posts...</p>
-              </InfiniteLoader>
+              </InfiniteLoader> : ""
             }
             initialLoad={false}
           >
