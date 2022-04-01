@@ -40,33 +40,30 @@ export default function RepostModal({
     const { auth } = useAuth();
     const [loading, setLoading] = useState(false);
 
-    async function handleRepost() {
-        setLoading(true);
-        try {
-            await api.rePost(postId, auth?.token);
-            setLoading(false);
-            setOpenRepostModal(false);
-            window.location.reload();
-        } catch (error) {
-            console.log(error);
-            if (error.response.status === 409) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cannot Repost',
-                    text: error.response.data,
-                });
-                setLoading(false);
-            } else {
-                setLoading(false);
-                setOpenRepostModal(false);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cannot Repost',
-                    text: error.response.data,
-                });
-            }
-        }
-    }
+  async function handleRepost(){
+    setLoading(true)
+    try {
+      await api.rePost(postId, auth?.token) 
+      setLoading(false)
+      setOpenRepostModal(false)
+      window.location.reload()
+    } catch (error) {
+        
+      if(error.response.status === 409){
+        Swal.fire({
+          icon: 'error',
+          title: 'Cannot Repost',
+          text: error.response.data,
+      });
+      }else{
+      setLoading(false)
+      setOpenRepostModal(false)
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot Repost',
+        text: "Something went wrong, please try again",
+    });}
+    }}
 
     return (
         <Modal

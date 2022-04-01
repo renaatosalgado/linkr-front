@@ -19,7 +19,8 @@ import {
     CommentsIcon,
     Icon,
     Count,
-    TopBar
+    TopBar,
+    Repost
 } from './style';
 import LinkPreview from '../LinkPreview';
 import LikeHeart from '../LikeHeart';
@@ -43,7 +44,8 @@ export default function Post({
     profilePicture,
     userId,
     repost,
-    repostedBy
+    repostedBy,
+    repostedByUserId
 }) {
     const [like, setLike] = useState(false);
     const { auth } = useAuth();
@@ -130,7 +132,7 @@ export default function Post({
             {repostedBy && (
                     <TopBar>
                         <RepostIcon/>
-                            <span>Re-posted by {repostedBy === auth.user.name ? "you" : repostedBy}</span>
+                            <Repost to={`/user/${repostedByUserId}`}>Re-posted by {repostedByUserId === auth.user.id ? "you" : repostedBy}</Repost>
                     </TopBar>) }
             <PostContainer isReposted={repostedBy}>
                     
