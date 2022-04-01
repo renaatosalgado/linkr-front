@@ -195,6 +195,7 @@ const Publish = styled.button`
 const CenteredContainer = styled.div`
     min-width: 610px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -202,6 +203,29 @@ const CenteredContainer = styled.div`
         min-width: 100%;
     }
 `;
+
+const InfiniteLoader = styled.div`
+    min-width: 610px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 16px;
+
+    p {
+        color: #6D6D6D;
+        font-size: 22px;
+        line-height: 26.4px;
+        letter-spacing: 5%;
+
+        margin-top: 16px;
+    }
+
+    @media (max-width: 635px) {
+        min-width: 100%;
+    }
+`
 
 export {
     TimelineContainer,
@@ -217,4 +241,5 @@ export {
     Buttons,
     Publish,
     CenteredContainer,
+    InfiniteLoader
 };
