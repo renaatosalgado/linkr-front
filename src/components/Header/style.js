@@ -97,36 +97,52 @@ const LogoutButton = styled.button`
 
 const SearchContainer = styled.div`
     position: fixed;
-    left: calc((100vw - 350px) / 2);
+    left: calc((100vw - 560px) / 2);
     top: 16px;
-    width: 350px;
-    height: 45px;
+    width: 560px;
     font-family: 'Lato';
     font-size: 19px;
     line-height: 22.8px;
+    border-radius: 8px;
+    ${(props) => {
+        if (props.foundUser.length > 0 && props.searchName.length > 2) {
+            return `background-color: #e7e7e7;`;
+        }
+    }};
+    @media (max-width: 835px) {
+        width: 66vw;
+        left: 17vw;
+        top: 16px;
+    }
+    @media (max-width: 762px) {
+        width: 60vw;
+        left: 20vw;
+        top: 16px;
+    }
+    @media (max-width: 662px) {
+        width: 58vw;
+        left: 21vw;
+        top: 16px;
+    }
     @media (max-width: 635px) {
-        //position: aboslute;
-        top: 72px;
-        left: 0;
-        width: 100vw;
-        height: 65px;
+        position: fixed;
+        top: 82px;
+        left: 10px;
+        width: calc((100vw - 30px));
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #333333;
-        border: none;
-        outline: none;
-        //width: calc((100vw - 20px));
     }
 `;
 
 const SearchInput = styled.input`
     background-color: #ffffff;
-    width: 350px;
+    width: 560px;
     height: 45px;
-    //border-radius: 8px;
     padding-left: 17px;
     z-index: 3;
+    border-radius: 8px;
     &::placeholder {
         font-size: 19px;
         line-height: 22.8px;
@@ -135,8 +151,23 @@ const SearchInput = styled.input`
     &:focus {
         outline: none;
     }
+    @media (max-width: 835px) {
+        width: 66vw;
+    }
+    @media (max-width: 762px) {
+        width: 60vw;
+    }
+    @media (max-width: 662px) {
+        width: 58vw;
+    }
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
+    }
+    @media (max-width: 332px) {
+        &::placeholder {
+            max-width: 150px;
+            overflow: hidden;
+        }
     }
 `;
 
@@ -150,35 +181,38 @@ const SearchIcon = styled.div`
         color: #1877f2;
     }
     @media (max-width: 635px) {
-        top: 22px;
-        right: 30px;
         z-index: 4;
     }
 `;
 
 const FoundUsers = styled.div`
-    width: 350px;
+    width: 560px;
     background-color: #e7e7e7;
-    //border-radius: 8px;
-    position: absolute;
-    top: 45px;
-    right: 0;
     z-index: 1;
     display: ${(props) => (props.isSearching ? 'inherit' : 'none')};
+    border-radius: 0 0 8px 8px;
+    padding: ${(props) => (props.foundUser !== 0 ? '8px 0 15px 0' : '0')};
+    @media (max-width: 835px) {
+        width: 66vw;
+    }
+    @media (max-width: 762px) {
+        width: 60vw;
+    }
+    @media (max-width: 662px) {
+        width: 58vw;
+    }
     @media (max-width: 635px) {
         width: calc((100vw - 30px));
-        right: 15px;
-        top: 55px;
         flex-direction: column;
     }
 `;
 
 const SingleUser = styled.div`
     position: relative;
-    width: 100%;
     display: flex;
     align-items: center;
     color: #515151;
+    margin: 8px 17px;
     p {
         font-size: 19px;
         font-family: 'Lato';

@@ -36,6 +36,7 @@ const Title = styled.div`
     font-size: 43px;
     color: #ffffff;
     margin-bottom: 50px;
+    position: relative;
     word-break: break-all;
     @media (max-width: 635px) {
         font-size: 33px;

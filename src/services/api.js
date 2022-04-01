@@ -28,18 +28,18 @@ async function createPost(body, token) {
     return promise;
 }
 
-async function listAllPosts(token) {
+async function listAllPosts(_, pageNumber, token) {
     const config = createConfig(token);
 
-    const promise = await axios.get(`${BASE_URL}/posts`, config);
+    const promise = await axios.get(`${BASE_URL}/posts?pageNumber=${pageNumber}`, config);
     return promise;
 }
 
 async function listUserPosts(token, userId) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
-  return promise;
+    const promise = await axios.get(`${BASE_URL}/user/${userId}`, config);
+    return promise;
 }
 
 async function logout(token) {
@@ -50,61 +50,62 @@ async function logout(token) {
 }
 
 async function searchUser(userName, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
+    const promise = axios.get(`${BASE_URL}/users?name=${userName}`, config);
 
-  return promise;
+    return promise;
 }
 
 async function toggleLike(body, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
-  return promise;
+    const promise = await axios.post(`${BASE_URL}/likes/toggle`, body, config);
+    return promise;
 }
 
 
 async function totalLikes(postId, token) {
     const config = createConfig(token);
 
-  const promise = await axios.get(`${BASE_URL}/likes/${postId}/total`, config);
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/likes/${postId}/total`,
+        config
+    );
+    return promise;
 }
 
 async function checkLikeUser(postId, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-
-  const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
-  return promise;
+    const promise = await axios.get(`${BASE_URL}/likes/${postId}`, config);
+    return promise;
 }
 
 async function hashtagPost(hashtag, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-
-  const promise = await axios.get(
-    `${BASE_URL}/posts/hashtag/${hashtag}`,
-    config
-  );
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/posts/hashtag/${hashtag}`,
+        config
+    );
+    return promise;
 }
 
-async function listTrending(token){
+async function listTrending(token) {
     const config = createConfig(token);
     const promise = await axios.get(`${BASE_URL}/trends`, config);
     return promise;
 }
 
 async function getTwoNames(postId, token) {
-  const config = createConfig(token);
+    const config = createConfig(token);
 
-  const promise = await axios.get(
-    `${BASE_URL}/likes/${postId}/two-names`,
-    config
-  );
-  return promise;
+    const promise = await axios.get(
+        `${BASE_URL}/likes/${postId}/two-names`,
+        config
+    );
+    return promise;
 }
 
 
@@ -127,31 +128,113 @@ async function authToken(token) {
     return promise;
 }
 
-async function deletePost(postId, token){
-  const config = createConfig(token);
+async function deletePost(postId, token) {
+    const config = createConfig(token);
 
-  const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config)
-  return promise
+    const promise = await axios.delete(`${BASE_URL}/posts/${postId}`, config);
+    return promise;
+}
+
+async function rePost(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.post(
+        `${BASE_URL}/posts/${postId}/repost`,
+        null,
+        config
+    );
+    return promise;
+}
+
+async function followUser(followId, token) {
+    const config = createConfig(token);
+    const promise = await axios.post(
+        `${BASE_URL}/${followId}/follow`,
+        {},
+        config
+    );
+    return promise;
+}
+
+async function isFollow(followId, token) {
+    const config = createConfig(token);
+    const promise = await axios.get(
+        `${BASE_URL}/is-follow/${followId}`,
+        config
+    );
+    return promise;
+}
+
+async function getComments(postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(
+        `${BASE_URL}/posts/${postId}/comments`,
+        config
+    );
+    return promise;
+}
+
+async function createComment(text, postId, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.post(
+        `${BASE_URL}/posts/${postId}/comments`,
+        text,
+        config
+    );
+    return promise;
+}
+
+async function updatePostsQuantity(lastPostDatetime, token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(
+        `${BASE_URL}/posts/update/${lastPostDatetime}`,
+        config
+    );
+    return promise;
+}
+
+async function getFollows(token) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/follows`, config);
+    return promise;
+}
+
+async function isFollowUser(token, userId) {
+    const config = createConfig(token);
+
+    const promise = await axios.get(`${BASE_URL}/is-follow-user/${userId}`, config);
+    return promise;
 }
 
 const api = {
-
-  createUser,
-  login,
-  createPost,
-  listAllPosts,
-  logout,
-  toggleLike,
-  totalLikes,
-  checkLikeUser,
-  searchUser,
-  hashtagPost,
-  editPost,
-  listUserPosts,
-  getTwoNames,
-  listTrending,
-  deletePost,
-  authToken,
+    createUser,
+    login,
+    createPost,
+    listAllPosts,
+    logout,
+    toggleLike,
+    totalLikes,
+    checkLikeUser,
+    searchUser,
+    hashtagPost,
+    editPost,
+    listUserPosts,
+    getTwoNames,
+    listTrending,
+    deletePost,
+    authToken,
+    followUser,
+    isFollow,
+    getComments,
+    createComment,
+    updatePostsQuantity,
+    getFollows,
+    rePost,
+    isFollowUser,
 };
 
 export default api;

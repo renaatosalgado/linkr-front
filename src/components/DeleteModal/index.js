@@ -4,6 +4,7 @@ import api from '../../services/api';
 import { CancelButton, ConfirmButton, ModalText, ButtonBox } from './style';
 import { RotatingLines } from 'react-loader-spinner';
 import { useState } from 'react'
+import Swal from 'sweetalert2';
 
 const customStyles = {
   overlay: {zIndex: 1000},
@@ -26,7 +27,7 @@ const customStyles = {
 };
 
 Modal.setAppElement('.root');
-export default function DeleteModal({openModal, setOpenModal, postId }){
+export default function DeleteModal({openDeleteModal, setOpenDeleteModal, postId }){
   const { auth } = useAuth();
   const [loading, setLoading] = useState(false)
 
@@ -35,27 +36,31 @@ export default function DeleteModal({openModal, setOpenModal, postId }){
     try {
       await api.deletePost(postId, auth?.token) 
       setLoading(false)
-      setOpenModal(false)
+      setOpenDeleteModal(false)
       window.location.reload()
     } catch (error) {
       console.log(error)
       setLoading(false)
-      setOpenModal(false)
-      alert("It wasn't possible to delete post.")
+      setOpenDeleteModal(false)
+      Swal.fire({
+        icon: 'error',
+        title: 'Cannot Delete post',
+        text: "Somtething went wrong, please try again.",
+    });
     }
   }
 
 
   return (
     <Modal 
-    isOpen={openModal}
-    onRequestClose={() => {if(!loading)setOpenModal(false)}}
+    isOpen={openDeleteModal}
+    onRequestClose={() => {if(!loading)setOpenDeleteModal(false)}}
     style={customStyles}>
     {loading ? <RotatingLines width='200' /> : 
       <>
         <ModalText>Are you sure you want <br/> to delete this post?</ModalText>
         <ButtonBox>
-          <CancelButton onClick={() => setOpenModal(false)} >No, go back</CancelButton>
+          <CancelButton onClick={() => setOpenDeleteModal(false)} >No, go back</CancelButton>
           <ConfirmButton onClick={deletePost}>Yes, delete it</ConfirmButton>
         </ButtonBox>
       </>}

@@ -78,15 +78,17 @@ const FormContainer = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     justify-self: flex-end;
+    padding-top: ${(props) => (props.page === '/' ? '30vh' : '25vh')};
     @media (max-width: 1070px) {
         min-width: 50%;
     }
     @media (max-width: 700px) {
         width: 100%;
         justify-content: flex-start;
+        padding-top: 10px;
     }
 `;
 

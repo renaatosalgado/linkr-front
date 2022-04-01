@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactHashtag from '@mdnm/react-hashtag';
-
 import {
     PostBox,
     PostContainer,
@@ -15,12 +14,24 @@ import {
     EditIcon,
     DeleteIcon,
     EditInput,
+    RepostIcon,
+    LeftIcons,
+    CommentsIcon,
+    Icon,
+    Count,
+    TopBar,
+    Repost
 } from './style';
 import LinkPreview from '../LinkPreview';
 import LikeHeart from '../LikeHeart';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import DeleteModal from '../DeleteModal';
+import RepostModal from '../RepostModal';
+import Comments from '../Comments/index';
+import { IconContext } from 'react-icons';
+import { AiOutlineComment } from 'react-icons/ai';
+import Swal from 'sweetalert2';
 
 export default function Post({
     url,
@@ -32,6 +43,9 @@ export default function Post({
     author,
     profilePicture,
     userId,
+    repost,
+    repostedBy,
+    repostedByUserId
 }) {
     const [like, setLike] = useState(false);
     const { auth } = useAuth();
@@ -41,13 +55,28 @@ export default function Post({
     const [postText, setPostText] = useState(textDescription);
     const [description, setDescription] = useState(postText);
     const [loading, setLoading] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [openRepostModal, setOpenRepostModal] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [areCommentsOpen, setAreCommentsOpen] = useState(false);
 
     useEffect(() => {
         if (editFocus) {
             editRef.current.focus();
         }
     }, [editFocus]);
+
+    useEffect(() => {
+        getComments();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    async function getComments() {
+        try {
+            const response = await api.getComments(postId, auth.token);
+            setComments(response.data);
+        } catch (error) {}
+    }
 
     function handleEditPost() {
         if (edit) {
@@ -73,7 +102,12 @@ export default function Post({
                 setEdit(!edit);
                 setEditFocus(!editFocus);
             } catch (error) {
-                alert('Something went wrong, please try again');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot Edit post',
+                    text: "Somtething went wrong, please try again.",
+                });
+                
                 setLoading(false);
             }
         }
@@ -81,17 +115,53 @@ export default function Post({
 
     return (
         <PostBox key={postId}>
-            {openModal && (
+            {openDeleteModal && (
                 <DeleteModal
-                    openModal={openModal}
-                    setOpenModal={setOpenModal}
+                    openDeleteModal={openDeleteModal}
+                    setOpenDeleteModal={setOpenDeleteModal}
                     postId={postId}
                 />
             )}
-            <PostContainer>
+            {openRepostModal && (
+                <RepostModal
+                    openRepostModal={openRepostModal}
+                    setOpenRepostModal={setOpenRepostModal}
+                    postId={postId}
+                />
+            )}
+            {repostedBy && (
+                    <TopBar>
+                        <RepostIcon/>
+                            <Repost to={`/user/${repostedByUserId}`}>Re-posted by {repostedByUserId === auth.user.id ? "you" : repostedBy}</Repost>
+                    </TopBar>) }
+            <PostContainer isReposted={repostedBy}>
+                    
                 <LeftContainer>
                     <PerfilPicture src={profilePicture} />
                     <LikeHeart like={like} setLike={setLike} postId={postId} />
+                    <CommentsIcon>
+                        <Icon>
+                            <IconContext.Provider
+                                value={{
+                                    color: 'white',
+                                    size: '1.7em',
+                                }}
+                            >
+                                <AiOutlineComment
+                                    onClick={() =>
+                                        setAreCommentsOpen(!areCommentsOpen)
+                                    }
+                                />
+                            </IconContext.Provider>
+                        </Icon>
+                        <Count>{`${comments.length} comment${
+                            comments?.length === 1 ? '' : 's'
+                        }`}</Count>
+                    </CommentsIcon>
+                    <LeftIcons>
+                        <RepostIcon onClick={() => setOpenRepostModal(true)} />
+                        <span>{repost} re-posts</span>
+                    </LeftIcons>
                 </LeftContainer>
                 <RightContainer>
                     <TopContainer>
@@ -101,7 +171,7 @@ export default function Post({
                                 <EditIcon size="20" onClick={handleEditPost} />
                                 <DeleteIcon
                                     size="20"
-                                    onClick={() => setOpenModal(true)}
+                                    onClick={() => setOpenDeleteModal(true)}
                                 />
                             </IconBox>
                         )}
@@ -140,6 +210,12 @@ export default function Post({
                     />
                 </RightContainer>
             </PostContainer>
+            <Comments
+                postId={postId}
+                commentsOpen={areCommentsOpen}
+                comments={comments}
+                setComments={setComments}
+            />
         </PostBox>
     );
 }

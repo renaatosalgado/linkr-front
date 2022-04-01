@@ -13,6 +13,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import api from '../../services/api';
 import useAuth from '../../hooks/useAuth';
 import Post from '../../components/Post';
+import FollowButton from '../../components/FollowButton';
 
 function UserPage() {
     const { id } = useParams();
@@ -43,7 +44,9 @@ function UserPage() {
         <TimelineContainer>
             <TimelineBox>
                 <TimelineBody>
-                    <Title>{userName ? `${userName}'s posts` : ''}</Title>
+                    <Title>{userName ? `${userName}'s posts` : ''}
+                        <FollowButton isLoadingPosts={isLoadingPosts} followedId={id}>Follow</FollowButton>
+                    </Title>
 
                     {isLoadingPosts ? (
                         <CenteredContainer>
@@ -68,10 +71,12 @@ function UserPage() {
                                 author={post.author}
                                 profilePicture={post.profilePicture}
                                 userId={post.userId}
+                                repost={post.repostCount}
                             />
                         ))
                     )}
                 </TimelineBody>
+
                 <Trending />
             </TimelineBox>
         </TimelineContainer>
